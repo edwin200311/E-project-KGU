@@ -20,9 +20,11 @@ public class flower implements Manageable {
     }
     
     @Override
-    public void print(){
-        System.out.printf("이름: %s 꽃말: %s 개화시기:%s 색상:%s 관리법:%s 가격: %d\n",name,language,flowering,color,care,cost);
-    }
+    public void print() {
+		System.out.printf("이름: %s | 꽃말: %s | 개화시기: %s | 색상: %s | 관리법: %s | 가격: %d\n"
+				, this.name, this.language, this.flowering, this.color, this.care, this.cost);
+	}
+
     @Override
     public boolean matches(String kwd){
         if(name.equals(kwd)) return true;

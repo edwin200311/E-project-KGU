@@ -79,7 +79,7 @@ public class Manager implements Factory {
 					break;
 				try {
 					ynflower = (flower) store.flowerMgr.find(flowername);
-					System.out.println(ynflower.getname());
+					//System.out.println(ynflower.getname());
 				} catch (Exception e1) {
 					if (ynflower == null) {
 						System.out.println("저희 가게에 없는 상품입니다!");
