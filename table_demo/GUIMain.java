@@ -34,7 +34,7 @@ public class GUIMain {
      * GUI를 생성하여 보여준다. 스레드 안전을 위하여
      * 이 메소드는 이벤트 처리 스레드에서 불려져야 한다.
      */
-	static JFrame mainFrame = new JFrame("TableSelectionDemo");
+	static JFrame mainFrame = new JFrame("E조꽃집");
     private void createAndShowGUI() {
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         // 탭을 생성하고 두개 패널을 추가한다.
