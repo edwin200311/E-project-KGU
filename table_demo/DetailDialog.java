@@ -29,6 +29,7 @@ public class DetailDialog extends javax.swing.JDialog {
 		details[0] = new JLabel("상품코드: " + itemDetails[0]);
 		details[1] = new JLabel("상품명: " + itemDetails[1]);
 		details[2] = new JLabel("가격: " + itemDetails[2]);
+        
 		lpane.add(details[0]);
 		lpane.add(details[1]);
 		lpane.add(details[2]);
