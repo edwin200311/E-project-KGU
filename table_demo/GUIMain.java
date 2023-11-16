@@ -82,4 +82,7 @@ public class GUIMain {
         bottom.add(new JLabel("장바구니 테스트"), BorderLayout.LINE_END);
         orderPane.add(bottom, BorderLayout.SOUTH);
     }
+    private void firstPane(){
+        
+    }
 }
