@@ -1,26 +1,25 @@
+package mgr;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
-public class Manager implements Factory {
-	ArrayList<Manageable> mList = new ArrayList<>();
+import store.flower;
 
-	Scanner openFile(String filename) {
-		Scanner filein = null;
-		try {
-			filein = new Scanner(new File(filename));
-		} catch (IOException e) {
-			System.out.println("파일 입력 오류");
-			System.exit(0);
-		}
-		return filein;
+public class Manager<T extends Manageable> {
+	public ArrayList<T> mList = new ArrayList<>();
+	public T find(String kwd) {
+	    for (T m: mList)
+	    	if (m.matches(kwd))
+	    		return m;
+	    return null;
 	}
-
-	public void readAll(String filename, Factory fac) {
+	public void readAll(String filename, Factory<T> fac) {
 		Scanner filein = openFile(filename);
-		Manageable m = null;
+		T m = null;
 		while (filein.hasNext()) {
 			m = fac.create();
 			m.read(filein);
@@ -30,41 +29,48 @@ public class Manager implements Factory {
 	}
 
 	public void printAll() {
-		for (Manageable m : mList) {
+		for (T m : mList) {
 			m.print();
 		}
 	}
-
-	public void search(Scanner scan) {
-		String name = null;
+	public void search(Scanner keyScanner) {
+		String kwd = null;
 		while (true) {
+			System.out.print(">> ");
 			System.out.print("end를 입력하면 종료됩니다.\n키워드: ");
-			name = scan.next();
-			if (name.equals("end"))
+			kwd = keyScanner.next();
+			if (kwd.equals("end"))
 				break;
-			for (Manageable m : mList) {
-				if (m.matches(name))
+			for (T m : mList) {
+				if (m.matches(kwd))
 					m.print();
 			}
-			for (int i = 0; i < 40; i++)
-				System.out.print("*");
-			System.out.println();
 		}
 	}
-
-	public Manageable find(String kwd) {
-		for (Manageable m : mList) {
+	public List<T> findAll(String kwd) {
+		List<T> result = new ArrayList<>();
+		for (T m : mList) {
 			if (m.matches(kwd))
-				return m;
+				result.add(m);
 		}
-		return null;
+		return result;
 	}
 
-	public Manageable create() {
-		return new user();
+	public Scanner openFile(String filename) {
+		Scanner filein = null;
+		try {
+			filein = new Scanner(new File(filename));
+		} catch (Exception e) {
+			System.out.println(filename + ": 파일 없음");
+			System.exit(0);
+		}
+		return filein;
 	}
-
-	public void Save(String Savefile) {
+	public void addElement(T e) {
+		mList.add(e);
+	}
+	
+	/*public void Save(String Savefile) {
 		Scanner scan = new Scanner(System.in);
 		ArrayList<String> input = new ArrayList<>();
 		try {
@@ -78,7 +84,7 @@ public class Manager implements Factory {
 				if (flowername.equals("0"))
 					break;
 				try {
-					ynflower = (flower) store.flowerMgr.find(flowername);
+					ynflower=(store.flower) store.Store.flowerMgr.find(flowername);
 					//System.out.println(ynflower.getname());
 				} catch (Exception e1) {
 					if (ynflower == null) {
@@ -101,6 +107,9 @@ public class Manager implements Factory {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-	}
+	}*/
+
+
+
 
 }
