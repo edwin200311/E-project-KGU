@@ -23,11 +23,6 @@ public class DetailDialog extends javax.swing.JDialog {
 		setTitle("상품상세보기");
 		JPanel pane = new JPanel(new BorderLayout());
 		JPanel lpane = new JPanel(new GridLayout(6, 1));
-		ImageIcon flowertestIcon = new ImageIcon("flowertest.png");
-		JLabel photo = new JLabel(flowertestIcon);
-		photo.setOpaque(true);  // JLabel은 기본이 배경 투명
-		photo.setPreferredSize(new Dimension(150, 150));
-		photo.setBackground(Color.YELLOW);
 		details[0] = new JLabel("이름: " + itemDetails[0]);
 		details[1] = new JLabel("꽃말: " + itemDetails[1]);
 		details[2] = new JLabel("피는시기: " + itemDetails[2]);
@@ -35,6 +30,14 @@ public class DetailDialog extends javax.swing.JDialog {
 		details[4] = new JLabel("관리방법: " + itemDetails[4]);
 		details[5] = new JLabel("가격: " + itemDetails[5]);
         
+		String flwclassify = ("images/"+itemDetails[0]+".png");
+		ImageIcon flowertestIcon = new ImageIcon(flwclassify);
+		JLabel photo = new JLabel(flowertestIcon);
+		photo.setOpaque(true);  // JLabel은 기본이 배경 투명
+		photo.setPreferredSize(new Dimension(270, 270));
+		photo.setBackground(Color.YELLOW);
+		setTitle(itemDetails[0]);
+
 		lpane.add(details[0]);
 		lpane.add(details[1]);
 		lpane.add(details[2]);
