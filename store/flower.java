@@ -10,17 +10,21 @@ public class flower implements Manageable, UIData {
     String name; // 이름
     String language; // 꽃말
     String flowering; // 개화시기
+    String category; //색 분류
     String color; // 색상
     String care; // 관리법
     int cost; // 가격
+    int count; //재고
 
     @Override
     public void read(Scanner scan) {
         name = scan.next();
         language = scan.next();
         flowering = scan.next();
+        category = scan.next();
         color = scan.next();
         cost = scan.nextInt();
+        count = scan.nextInt();
         care = scan.nextLine();
     }
 
@@ -36,7 +40,7 @@ public class flower implements Manageable, UIData {
             return true;
         else if (language.contains(kwd))
             return true;
-        else if (color.contains(kwd))
+        else if (category.contains(kwd))
             return true;
         else if (flowering.contains(kwd))
             return true;
@@ -67,6 +71,7 @@ public class flower implements Manageable, UIData {
         texts[3] = color;
         texts[4] = care;
         texts[5] = "" + cost;
+        texts[6] = "" + count;
 
         return texts;
     }
