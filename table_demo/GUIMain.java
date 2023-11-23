@@ -1,12 +1,17 @@
 package table_demo;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.util.List;
+import java.awt.GridLayout;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 
+import facade.UIData;
 import store.FlowerMgr;
 import store.OrderMgr;
 import store.OrderedItemMgr;
@@ -42,9 +47,11 @@ public class GUIMain {
         
         setupItemPane();
         setupOrderPane();
+        //setupfirstPane();
         // 아이템 리스트 탭과 주문 탭 두 개의 패널을 가지는 탭 패널
         jtab.add("아이템", itemPane);
         jtab.add("주문", orderPane);
+        //jtab.add("메인", firstPane);
         mainFrame.getContentPane().add(jtab);
         //Display the window.
         mainFrame.pack();
@@ -84,7 +91,18 @@ public class GUIMain {
     }
     private JPanel firstPane;
     private void setupfirstPane(){
-        firstPane=new JPanel(new BorderLayout());
+        init(firstPane);
+        JScrollPane scroll = new JScrollPane(firstPane);
+        scroll.setPreferredSize(new Dimension(1200, 600));
+
+        
         
     }
+    void init(JPanel pane) {
+		pane.setLayout(new GridLayout(4, 4));
+		List<?> flowerlist = FlowerMgr.getInstance().search("");
+		for (Object o: flowerlist) {
+			pane.add(new ImageCell((UIData)o));
+		}
+	}
 }
