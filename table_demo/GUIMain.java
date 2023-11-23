@@ -45,13 +45,14 @@ public class GUIMain {
         // 탭을 생성하고 두개 패널을 추가한다.
         JTabbedPane jtab = new JTabbedPane();
         
+        
+        setupfirstPane();
         setupItemPane();
         setupOrderPane();
-        //setupfirstPane();
         // 아이템 리스트 탭과 주문 탭 두 개의 패널을 가지는 탭 패널
+        jtab.add("메인", firstPane);
         jtab.add("아이템", itemPane);
         jtab.add("주문", orderPane);
-        //jtab.add("메인", firstPane);
         mainFrame.getContentPane().add(jtab);
         //Display the window.
         mainFrame.pack();
@@ -91,18 +92,11 @@ public class GUIMain {
     }
     private JPanel firstPane;
     private void setupfirstPane(){
-        init(firstPane);
-        JScrollPane scroll = new JScrollPane(firstPane);
-        scroll.setPreferredSize(new Dimension(1200, 600));
-
-        
-        
-    }
-    void init(JPanel pane) {
-		pane.setLayout(new GridLayout(4, 4));
-		List<?> flowerlist = FlowerMgr.getInstance().search("");
-		for (Object o: flowerlist) {
-			pane.add(new ImageCell((UIData)o));
+        firstPane=new JPanel(new BorderLayout());
+        firstPane.setLayout(new GridLayout(10, 10));
+		List<?> itemlist = FlowerMgr.getInstance().search("");
+		for (Object o: itemlist) {
+			firstPane.add(new ImageCell((UIData)o));
 		}
-	}
+    }
 }
