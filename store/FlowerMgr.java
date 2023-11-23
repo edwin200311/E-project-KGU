@@ -16,6 +16,6 @@ public class FlowerMgr extends DataEngineImpl<flower> {
 			engine = new FlowerMgr();
 		return engine;
 	}
-	private String[] headers = {"name", "language", "flowering","color","care","cost"};
+	private String[] headers = {"name", "language", "flowering","color","care","cost","count"};
 
 }
