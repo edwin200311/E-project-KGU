@@ -81,7 +81,7 @@ public class TableSelectionDemo extends JPanel implements ListSelectionListener 
         ListSelectionModel lsm = (ListSelectionModel)e.getSource();
         if (!lsm.isSelectionEmpty()) {
         	selectedIndex = lsm.getMinSelectionIndex();
-        	String name = (String)tableModel.getValueAt(selectedIndex, 1);
+        	String name = (String)tableModel.getValueAt(selectedIndex, 0);
         	// 아이템 테이블의 클릭은 텍스트 필드에 값을 보여주고
         	// 주문 테이블의 클릭은 장바구니의 값을 바꾼다
         	if (tableTitle.equals("item")) {

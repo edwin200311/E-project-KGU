@@ -46,7 +46,7 @@ public class DetailDialog extends javax.swing.JDialog {
 		lpane.add(details[5]);
 		pane.add(lpane, BorderLayout.CENTER);
 		pane.add(photo, BorderLayout.LINE_END);
-		this.setMinimumSize(new Dimension(400, 150));  // 대화상자 크기 설정
+		this.setMinimumSize(new Dimension(600, 300));  // 대화상자 크기 설정
 		setContentPane(pane);
 	}
 }
