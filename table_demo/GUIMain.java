@@ -47,12 +47,14 @@ public class GUIMain {
         
         
         setupfirstPane();
+        setuprorderPane();
         setupItemPane();
         setupOrderPane();
         // 아이템 리스트 탭과 주문 탭 두 개의 패널을 가지는 탭 패널
         jtab.add("메인", firstPane);
-        jtab.add("아이템", itemPane);
-        jtab.add("주문", orderPane);
+        jtab.add("소비자.주문",rorderPane);
+        jtab.add("관리자.아이템", itemPane);
+        jtab.add("관리자.주문", orderPane);
         mainFrame.getContentPane().add(jtab);
         //Display the window.
         mainFrame.pack();
@@ -98,5 +100,18 @@ public class GUIMain {
 		for (Object o: itemlist) {
 			firstPane.add(new ImageCell((UIData)o));
 		}
+    }
+    private JPanel rorderPane;
+    TableSelectionDemo rorderTable = new TableSelectionDemo();
+    ItemTopPanel citemTop = new ItemTopPanel();
+    private void setuprorderPane(){
+        rorderPane=new JPanel(new BorderLayout());
+        JPanel bottom = new JPanel();
+        rorderTable.tableTitle = "find";
+        rorderTable.addComponentsToPane(FlowerMgr.getInstance());
+        citemTop.setupTopPane(rorderTable);
+        bottom.add(citemTop, BorderLayout.NORTH);
+        bottom.add(rorderTable,BorderLayout.CENTER);
+        rorderPane.add(bottom,BorderLayout.SOUTH);
     }
 }

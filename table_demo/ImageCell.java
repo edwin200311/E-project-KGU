@@ -29,8 +29,8 @@ public class ImageCell extends JPanel implements MouseListener {
 	void setup() {
 		setLayout(new BorderLayout());
 		userStrings = item.getUiTexts();
-		imgIcon = new ImageIcon(userStrings[3]);
-		Image scaleImage = imgIcon.getImage().getScaledInstance(150, 140,Image.SCALE_DEFAULT);
+		imgIcon = new ImageIcon("images/"+userStrings[0]+".png");
+		Image scaleImage = imgIcon.getImage().getScaledInstance(100, 70,Image.SCALE_DEFAULT);
 		ImageIcon imgResized = new ImageIcon(scaleImage);
 		add(new JLabel(imgResized), BorderLayout.CENTER);
 		String itemLabelStr = String.format("<html><body><h2>%s <br/>가격: %s원", userStrings[0], userStrings[5]);
