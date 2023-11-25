@@ -36,7 +36,7 @@ public class flower implements Manageable, UIData {
 
     @Override
     public boolean matches(String kwd) {
-        if (name.equals(kwd))
+        if (name.contains(kwd))
             return true;
         else if (language.contains(kwd))
             return true;
