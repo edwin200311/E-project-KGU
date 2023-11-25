@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.util.List;
 import java.awt.GridLayout;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -51,10 +52,11 @@ public class GUIMain {
         setupItemPane();
         setupOrderPane();
         // 아이템 리스트 탭과 주문 탭 두 개의 패널을 가지는 탭 패널
-        jtab.add("메인", firstPane);
+        jtab.add("소비자.꽃사전", scrollPane);
         jtab.add("소비자.주문",rorderPane);
         jtab.add("관리자.아이템", itemPane);
         jtab.add("관리자.주문", orderPane);
+        jtab.setTabPlacement(JTabbedPane.RIGHT);
         mainFrame.getContentPane().add(jtab);
         //Display the window.
         mainFrame.pack();
@@ -93,19 +95,29 @@ public class GUIMain {
         orderPane.add(bottom, BorderLayout.SOUTH);
     }
     private JPanel firstPane;
+    private JScrollPane scrollPane = new JScrollPane();
     private void setupfirstPane(){
         firstPane=new JPanel(new BorderLayout());
-        firstPane.setLayout(new GridLayout(10, 10));
+        //현재 꽃 42개-> Layout 14x3으로 설정
+        firstPane.setLayout(new GridLayout(14, 3));
 		List<?> itemlist = FlowerMgr.getInstance().search("");
 		for (Object o: itemlist) {
 			firstPane.add(new ImageCell((UIData)o));
 		}
+        scrollPane = new JScrollPane(firstPane);
     }
     private JPanel rorderPane;
     TableSelectionDemo rorderTable = new TableSelectionDemo();
     ItemTopPanel citemTop = new ItemTopPanel();
     private void setuprorderPane(){
         rorderPane=new JPanel(new BorderLayout());
+        
+        JPanel east = new JPanel();
+        
+
+
+        
+        //주문할 상품을 검색하는 부분
         JPanel bottom = new JPanel();
         rorderTable.tableTitle = "find";
         rorderTable.addComponentsToPane(FlowerMgr.getInstance());
@@ -113,5 +125,6 @@ public class GUIMain {
         bottom.add(citemTop, BorderLayout.NORTH);
         bottom.add(rorderTable,BorderLayout.CENTER);
         rorderPane.add(bottom,BorderLayout.SOUTH);
+        rorderPane.add(east,BorderLayout.EAST);
     }
 }
