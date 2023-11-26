@@ -115,8 +115,9 @@ public class GUIMain {
         rorderPane=new JPanel(new BorderLayout());
         
         JPanel east = new JPanel();
-        ImageIcon icon = new ImageIcon("flowertest.png");
-        String detail = null;
+        ImageIcon icon = null;
+        String imgName = "notChosen";
+        icon = new ImageIcon("images/"+imgName+".png");
         od=new orderDetail("", "", icon);
         east.add(od,BorderLayout.CENTER);
 
@@ -127,8 +128,8 @@ public class GUIMain {
         rorderTable.tableTitle = "find";
         rorderTable.addComponentsToPane(FlowerMgr.getInstance());
         citemTop.setupTopPane(rorderTable);
-        bottom.add(citemTop, BorderLayout.NORTH);
-        bottom.add(rorderTable,BorderLayout.CENTER);
+        bottom.add(citemTop, BorderLayout.LINE_START);
+        bottom.add(rorderTable,BorderLayout.LINE_END);
         rorderPane.add(bottom,BorderLayout.SOUTH);
         rorderPane.add(east,BorderLayout.EAST);
     }

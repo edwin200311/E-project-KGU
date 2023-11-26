@@ -19,6 +19,7 @@ public class orderDetail extends JPanel {
     public ImageIcon imageIcon;
     String labelText;
     String defaultText;
+    public JLabel imageLabel;
     public orderDetail(String labelText, String defaultText, ImageIcon imageIcon){
         this.setLayout(new BorderLayout());
 
@@ -26,16 +27,22 @@ public class orderDetail extends JPanel {
         JButton addItem = new JButton("추가");
         textArea = new JTextArea(defaultText);
         JScrollPane scrollPane = new JScrollPane(textArea);
-        scrollPane.setPreferredSize(new Dimension(500,150));
+        scrollPane.setPreferredSize(new Dimension(400,400));
         this.imageIcon = imageIcon;
 
-        label.setIcon(imageIcon);
+        imageLabel=new JLabel(imageIcon);
+        //label.setIcon(imageIcon);
         label.setVerticalTextPosition(SwingConstants.CENTER);
         label.setHorizontalTextPosition(SwingConstants.RIGHT);
 
         this.add(label, BorderLayout.EAST);
         this.add(scrollPane,BorderLayout.WEST);
         this.add(addItem,BorderLayout.PAGE_END);
+        this.add(imageLabel,BorderLayout.CENTER);
         textArea.setEditable(false);
+    }
+    void changeImg(ImageIcon imgIcon){
+        this.imageIcon=imgIcon;
+        imageLabel.setIcon(imgIcon);
     }
 }
