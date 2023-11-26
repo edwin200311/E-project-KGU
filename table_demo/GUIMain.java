@@ -114,14 +114,13 @@ public class GUIMain {
     private void setuprorderPane(){
         rorderPane=new JPanel(new BorderLayout());
         
+        //주문할 상품의 상세정보가 표를 선택할때마다 바뀌어서 출력
         JPanel east = new JPanel();
         ImageIcon icon = null;
         String imgName = "notChosen";
         icon = new ImageIcon("images/"+imgName+".png");
         od=new orderDetail("", "", icon);
         east.add(od,BorderLayout.CENTER);
-
-
         
         //주문할 상품을 검색하는 부분
         JPanel bottom = new JPanel();
