@@ -82,13 +82,21 @@ public class TableSelectionDemo extends JPanel implements ListSelectionListener 
         if (!lsm.isSelectionEmpty()) {
         	selectedIndex = lsm.getMinSelectionIndex();
         	String name = (String)tableModel.getValueAt(selectedIndex, 0);
+        	String language = (String)tableModel.getValueAt(selectedIndex, 1);
+        	String flowering = (String)tableModel.getValueAt(selectedIndex, 2);
+        	String color = (String)tableModel.getValueAt(selectedIndex, 3);
+        	String cost = (String)tableModel.getValueAt(selectedIndex, 4);
+        	String care = (String)tableModel.getValueAt(selectedIndex, 5);
         	// 아이템 테이블의 클릭은 텍스트 필드에 값을 보여주고
         	// 주문 테이블의 클릭은 장바구니의 값을 바꾼다
         	if (tableTitle.equals("item")) {
         		GUIMain.getInstance().itemTop.kwdTextField.setText(name);
         	} else if (tableTitle.equals("order")) {
         		GUIMain.getInstance().basketTable.loadData(""+selectedIndex);
-        	}
+        	} else if (tableTitle.equals("find")){
+                GUIMain.getInstance().citemTop.kwdTextField.setText(name);
+                GUIMain.getInstance().od.textArea.setText("이름: "+name+"\n"+"꽃말: "+language+"\n"+"개화시기: "+flowering+"\n"+"색상: "+color+"\n"+"가격: "+cost+"\n"+"관리방법: "+care);
+            }
         }
     }
 }

@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.util.List;
 import java.awt.GridLayout;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -109,11 +110,15 @@ public class GUIMain {
     private JPanel rorderPane;
     TableSelectionDemo rorderTable = new TableSelectionDemo();
     ItemTopPanel citemTop = new ItemTopPanel();
+    orderDetail od = new orderDetail(null, null, null);
     private void setuprorderPane(){
         rorderPane=new JPanel(new BorderLayout());
         
         JPanel east = new JPanel();
-        
+        ImageIcon icon = new ImageIcon("flowertest.png");
+        String detail = null;
+        od=new orderDetail("", "", icon);
+        east.add(od,BorderLayout.CENTER);
 
 
         
