@@ -113,6 +113,8 @@ public class GUIMain {
     orderDetail od = new orderDetail(null, null, null);
     private void setuprorderPane(){
         rorderPane=new JPanel(new BorderLayout());
+        JPanel west = new JPanel();
+        
         
         //주문할 상품의 상세정보가 표를 선택할때마다 바뀌어서 출력
         JPanel east = new JPanel();
