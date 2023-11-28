@@ -4,6 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.util.List;
 import java.awt.GridLayout;
+import java.awt.image.BufferedImage;
+import java.awt.Image;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -19,17 +21,21 @@ import store.OrderMgr;
 import store.OrderedItemMgr;
 
 public class GUIMain {
-	// 싱글톤 패턴 적용 부분
-	private static GUIMain main = null;
-	private GUIMain() {}
-	public static GUIMain getInstance() {
-		if (main == null)
-			main = new GUIMain();
-		return main;
-	}
-	// 엔진의 인스턴스를 편리를 위해 변수에 저장한다
+    // 싱글톤 패턴 적용 부분
+    private static GUIMain main = null;
+
+    private GUIMain() {
+    }
+
+    public static GUIMain getInstance() {
+        if (main == null)
+            main = new GUIMain();
+        return main;
+    }
+
+    // 엔진의 인스턴스를 편리를 위해 변수에 저장한다
     public static void startGUI() {
-        // 이벤트 처리 스레드를 만들고 
+        // 이벤트 처리 스레드를 만들고
         // 거기서 GUI를 생성하고 보여준다.
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
             public void run() {
@@ -37,56 +43,61 @@ public class GUIMain {
             }
         });
     }
+
     /**
      * GUI를 생성하여 보여준다. 스레드 안전을 위하여
      * 이 메소드는 이벤트 처리 스레드에서 불려져야 한다.
      */
-	static JFrame mainFrame = new JFrame("E조꽃집");
+    static JFrame mainFrame = new JFrame("E조꽃집");
+
     private void createAndShowGUI() {
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         // 탭을 생성하고 두개 패널을 추가한다.
         JTabbedPane jtab = new JTabbedPane();
-        
-        
+
         setupfirstPane();
         setuprorderPane();
         setupItemPane();
         setupOrderPane();
         // 아이템 리스트 탭과 주문 탭 두 개의 패널을 가지는 탭 패널
         jtab.add("소비자.꽃사전", scrollPane);
-        jtab.add("소비자.주문",rorderPane);
+        jtab.add("소비자.주문", rorderPane);
         jtab.add("관리자.아이템", itemPane);
         jtab.add("관리자.주문", orderPane);
         jtab.setTabPlacement(JTabbedPane.RIGHT);
         mainFrame.getContentPane().add(jtab);
-        //Display the window.
+        // Display the window.
         mainFrame.pack();
         mainFrame.setVisible(true);
     }
+
     // 상품을 보여주는 패널 부분 - 탑과 JTable 포함
     private JPanel itemPane;
     TableSelectionDemo itemTable = new TableSelectionDemo();
-    ItemTopPanel itemTop = new ItemTopPanel();  // 검색과 상세보기 버튼을 가진 패널
+    ItemTopPanel itemTop = new ItemTopPanel(); // 검색과 상세보기 버튼을 가진 패널
+
     private void setupItemPane() {
-    	itemPane = new JPanel(new BorderLayout());
-        //Create and set up the content pane.
+        itemPane = new JPanel(new BorderLayout());
+        // Create and set up the content pane.
         itemTable.tableTitle = "item";
-        itemTable.addComponentsToPane(FlowerMgr.getInstance());  // 싱글톤
+        itemTable.addComponentsToPane(FlowerMgr.getInstance()); // 싱글톤
         itemTop.setupTopPane(itemTable);
         itemPane.add(itemTop, BorderLayout.NORTH);
         itemPane.add(itemTable, BorderLayout.CENTER);
     }
+
     // 상품을 보여주는 패널 부분 - 위에는 주문 JTable, 아래 패널은 장바구니와 버튼
     private JPanel orderPane;
     TableSelectionDemo orderTable = new TableSelectionDemo();
     BasketTableDemo basketTable = new BasketTableDemo();
+
     private void setupOrderPane() {
-    	orderPane = new JPanel(new BorderLayout());
+        orderPane = new JPanel(new BorderLayout());
         orderTable.tableTitle = "order";
         orderTable.addComponentsToPane(OrderMgr.getInstance());
         orderPane.add(orderTable, BorderLayout.CENTER);
         // 아래쪽은 장바구니 테이블과 라벨로 나누기 위해 패널 추가
-        JPanel bottom = new JPanel();  // 디폴트 플로우레이아웃
+        JPanel bottom = new JPanel(); // 디폴트 플로우레이아웃
         basketTable.tableTitle = "basket";
         basketTable.addComponentsToPane(OrderedItemMgr.getInstance());
 
@@ -95,43 +106,54 @@ public class GUIMain {
         bottom.add(new JLabel("장바구니 테스트"), BorderLayout.LINE_END);
         orderPane.add(bottom, BorderLayout.SOUTH);
     }
+
     private JPanel firstPane;
     private JScrollPane scrollPane = new JScrollPane();
-    private void setupfirstPane(){
-        firstPane=new JPanel(new BorderLayout());
-        //현재 꽃 42개-> Layout 14x3으로 설정
+
+    private void setupfirstPane() {
+        firstPane = new JPanel(new BorderLayout());
+        // 현재 꽃 42개-> Layout 14x3으로 설정
         firstPane.setLayout(new GridLayout(14, 3));
-		List<?> itemlist = FlowerMgr.getInstance().search("");
-		for (Object o: itemlist) {
-			firstPane.add(new ImageCell((UIData)o));
-		}
+        List<?> itemlist = FlowerMgr.getInstance().search("");
+        for (Object o : itemlist) {
+            firstPane.add(new ImageCell((UIData) o));
+        }
         scrollPane = new JScrollPane(firstPane);
     }
+
     private JPanel rorderPane;
     TableSelectionDemo rorderTable = new TableSelectionDemo();
     ItemTopPanel citemTop = new ItemTopPanel();
     orderDetail od = new orderDetail(null, null, null);
-    private void setuprorderPane(){
-        rorderPane=new JPanel(new BorderLayout());
+    showBuy sb = new showBuy();
+    public void setuprorderPane() {
+        rorderPane = new JPanel(new BorderLayout());
+        
+        //지금까지의 꽃 구매 현황 확인
         JPanel west = new JPanel();
+        west.add(sb,BorderLayout.CENTER);
         
-        
-        //주문할 상품의 상세정보가 표를 선택할때마다 바뀌어서 출력
+        // 주문할 상품의 상세정보가 표를 선택할때마다 바뀌어서 출력
         JPanel east = new JPanel();
         ImageIcon icon = null;
         String imgName = "notChosen";
-        icon = new ImageIcon("images/"+imgName+".png");
-        od=new orderDetail("", "", icon);
-        east.add(od,BorderLayout.CENTER);
-        
-        //주문할 상품을 검색하는 부분
+        icon = new ImageIcon("images/" + imgName + ".png");
+        od = new orderDetail("", "", icon);
+        east.add(od, BorderLayout.CENTER);
+
+        // 주문할 상품을 검색하는 부분
         JPanel bottom = new JPanel();
         rorderTable.tableTitle = "find";
         rorderTable.addComponentsToPane(FlowerMgr.getInstance());
         citemTop.setupTopPane(rorderTable);
         bottom.add(citemTop, BorderLayout.LINE_START);
-        bottom.add(rorderTable,BorderLayout.LINE_END);
-        rorderPane.add(bottom,BorderLayout.SOUTH);
-        rorderPane.add(east,BorderLayout.EAST);
+        bottom.add(rorderTable, BorderLayout.LINE_END);
+
+        //west.setPreferredSize(new Dimension(400, 400));
+        //east.setPreferredSize(new Dimension(800, 300));
+        rorderPane.add(bottom, BorderLayout.SOUTH);
+        rorderPane.add(west, BorderLayout.WEST);
+        rorderPane.add(east, BorderLayout.EAST);
     }
+
 }

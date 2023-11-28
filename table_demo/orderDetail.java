@@ -40,7 +40,15 @@ public class orderDetail extends JPanel {
         this.add(addItem,BorderLayout.PAGE_END);
         this.add(imageLabel,BorderLayout.CENTER);
         textArea.setEditable(false);
+    
+        addItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e){
+                
+            }
+        });
     }
+    
     void changeImg(ImageIcon imgIcon){
         this.imageIcon=imgIcon;
         imageLabel.setIcon(imgIcon);
