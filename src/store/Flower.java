@@ -5,12 +5,11 @@ import java.util.Scanner;
 import facade.UIData;
 import mgr.Manageable;
 
-public class flower implements Manageable, UIData {
-
+public class Flower implements Manageable, UIData {
     String name; // 이름
     String language; // 꽃말
-    String flowering; // 개화시기
-    String category; //색 분류
+    String floweringTime; // 개화시기
+    String colorCategory; //색 분류
     String color; // 색상
     String care; // 관리법
     int cost; // 가격
@@ -20,8 +19,8 @@ public class flower implements Manageable, UIData {
     public void read(Scanner scan) {
         name = scan.next();
         language = scan.next();
-        flowering = scan.next();
-        category = scan.next();
+        floweringTime = scan.next();
+        colorCategory = scan.next();
         color = scan.next();
         cost = scan.nextInt();
         count = scan.nextInt();
@@ -30,8 +29,8 @@ public class flower implements Manageable, UIData {
 
     @Override
     public void print() {
-        System.out.printf("이름: %s | 꽃말: %s | 개화시기: %s | 색상: %s | 관리법: %s | 가격: %d\n", this.name, this.language,
-                this.flowering, this.color, this.care, this.cost);
+        System.out.printf("이름: %s | 꽃말: %s | 개화시기: %s | 색상: %s | 관리법: %s | 가격: %d\n", 
+                          this.name, this.language, this.floweringTime, this.color, this.care, this.cost);
     }
 
     @Override
@@ -40,9 +39,9 @@ public class flower implements Manageable, UIData {
             return true;
         else if (language.contains(kwd))
             return true;
-        else if (category.contains(kwd))
+        else if (floweringTime.contains(kwd))
             return true;
-        else if (flowering.contains(kwd))
+        else if (colorCategory.contains(kwd))
             return true;
         else
             return false;
@@ -67,7 +66,7 @@ public class flower implements Manageable, UIData {
         String[] texts = new String[8];
         texts[0] = name;
         texts[1] = language;
-        texts[2] = flowering;
+        texts[2] = floweringTime;
         texts[3] = color;
         texts[4] = care;
         texts[5] = "" + cost;
