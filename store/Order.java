@@ -11,14 +11,16 @@ public class Order implements Manageable, UIData {
 	int orderId;
 	user user;
 	String date;
+	String address;
 	boolean payed;
 	int point;
 	List<OrderedItem> orderedItemList = new ArrayList<>();
 	public void read(Scanner scan) {
-		// 3 park 20201010 O F3124 3 F3223 1 0
+		// 3 park 20201010 주소 O F3124 3 F3223 1 0
 		orderId = scan.nextInt();
 		String userId = scan.next();
 		date = scan.next();
+		address = scan.next();
 		//payed = (scan.next().charAt(0) == 'O');
 	    flower item = null;
 	    String code = null;
@@ -59,6 +61,8 @@ public class Order implements Manageable, UIData {
 				return true;
 		if (user.id.contentEquals(kwd))
 			return true;
+		if(address.contains(kwd))
+			return true;
 		return false;
     }
 	public boolean matches(String[] kwdArr) {
@@ -90,13 +94,14 @@ public class Order implements Manageable, UIData {
 	@Override
 	public String[] getUiTexts() {
 		// TODO Auto-generated method stub
-		String[] texts = new String[5];
+		String[] texts = new String[8];
 		texts[0] = ""+orderId;
 		texts[1] = user.id;
 		texts[2] = date;
-		texts[3] = "O";
-		if (!payed) texts[3] = "X";
-		texts[4] = ""+point;
+		texts[3] = address;
+		texts[4] = "O";
+		if (!payed) texts[4] = "X";
+		texts[5] = ""+point;
 		return texts;
 	}
 }

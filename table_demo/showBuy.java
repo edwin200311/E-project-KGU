@@ -3,6 +3,8 @@ package table_demo;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.awt.event.ActionEvent;
 
 
@@ -14,6 +16,8 @@ public class showBuy extends JPanel {
     public Integer Zero = 0;
     Integer WIDTH = 200;
     Integer HEIGHT = 200;
+    LocalDateTime curDateTime = LocalDateTime.now();
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     public showBuy(String[] imagePaths) {
         this.setLayout(new BorderLayout());
 
@@ -44,27 +48,17 @@ public class showBuy extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // buyItem 버튼을 눌렀을 때의 동작을 여기에 추가
-
+                String test = GUIMain.getInstance().od.getorderList();
+                System.out.println(test);
                 // ID 입력 다이얼로그 표시
                 String[] IDandAddress = showIDAndAddressInputDialog();
 
-                // 입력받은 ID를 사용하여 원하는 작업 수행
-                if (IDandAddress != null) {
-                    // 여기에 입력받은 ID를 사용한 작업을 추가할 수 있습니다.
-                    // 예시: 각 이미지의 구매 여부를 확인하고 구매한 경우에만 작업 수행
-                    for (int i = 0; i < labels.length; i++) {
-                        ImageIcon currentIcon = (ImageIcon) labels[i].getIcon();
-                        if (currentIcon.getDescription().equals("구매 가능")) {
-                            // 해당 이미지를 구매 완료로 변경
-                            labels[i].setIcon(resize(new ImageIcon("images/구매완료.png"), 100, 100));
-
-                            // 여기에 원하는 작업 추가
-                            //GUIMain.getInstance().od.updatePurchaseStatus(i);
-
-                            // 예시: 구매한 상품의 ID를 출력
-                            System.out.println("ID " + IDandAddress + "로 " + i + "번 상품을 구매했습니다.");
-                        }
-                    }
+                if(IDandAddress!=null){
+                    String formattedDate = curDateTime.format(formatter);
+                    StringBuilder result = new StringBuilder();
+                    result.append(IDandAddress[0]).append(" ").append(IDandAddress[1]).append(" ").append(formattedDate).append(" ").append(test);
+                    String Rresult = result.toString().trim();
+                    System.out.println(Rresult);
                 }
             }
         });
