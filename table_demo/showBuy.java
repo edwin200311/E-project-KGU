@@ -5,12 +5,15 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+
+
 @SuppressWarnings("serial")
 public class showBuy extends JPanel {
     public ImageIcon imageIcon;
     public JLabel[] labels = new JLabel[9]; // 배열로 변경
     public Integer Zero = 0;
-
+    Integer WIDTH = 200;
+    Integer HEIGHT = 200;
     public showBuy(String[] imagePaths) {
         this.setLayout(new BorderLayout());
 
@@ -19,7 +22,7 @@ public class showBuy extends JPanel {
         JButton resetItem = new JButton("초기화");
 
         for (int i = 0; i < labels.length; i++) {
-            labels[i] = new JLabel(resize(new ImageIcon(imagePaths[i]), 100, 100));
+            labels[i] = new JLabel(resize(new ImageIcon(imagePaths[i]), WIDTH,HEIGHT));
             west.add(labels[i]);
         }
 
@@ -32,7 +35,7 @@ public class showBuy extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 // 초기 이미지로 모든 레이블 초기화
                 for (int i = 0; i < labels.length; i++) {
-                    labels[i].setIcon(resize(new ImageIcon("images/None.png"), 100, 100));
+                    labels[i].setIcon(resize(new ImageIcon("images/None.png"),WIDTH,HEIGHT));
                     GUIMain.getInstance().od.reset(Zero);
                 }
             }

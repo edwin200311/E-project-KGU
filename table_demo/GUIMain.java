@@ -150,6 +150,9 @@ public class GUIMain {
         ImageIcon icon = null;
         String imgName = "notChosen";
         icon = new ImageIcon("images/" + imgName + ".png");
+        if(imgName.equals("notChosen")){
+            icon=GUIMain.getInstance().od.resize(icon, 300, 500);
+        }
         od = new orderDetail("", "", icon);
         east.add(od, BorderLayout.CENTER);
 
@@ -161,10 +164,10 @@ public class GUIMain {
         bottom.add(citemTop, BorderLayout.LINE_START);
         bottom.add(rorderTable, BorderLayout.LINE_END);
 
-        west.setPreferredSize(new Dimension(400, 400));
+        west.setPreferredSize(new Dimension(600, 400));
         east.setPreferredSize(new Dimension(800, 300));
         rorderPane.add(bottom, BorderLayout.SOUTH);
-        rorderPane.add(west, BorderLayout.WEST);
+        rorderPane.add(west, BorderLayout.LINE_START);
         rorderPane.add(east, BorderLayout.EAST);
     }
 

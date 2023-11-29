@@ -61,7 +61,7 @@ public class orderDetail extends JPanel {
                 imgicon = new ImageIcon(icon);
                 imgicon = resize(imgicon, 100, 100);
                 image = imgicon.getImage();
-                GUIMain.getInstance().sb.labels[index].setIcon(resize(new ImageIcon("images/"+extractedName+".png"), 100, 100));
+                GUIMain.getInstance().sb.labels[index].setIcon(resize(new ImageIcon("images/"+extractedName+".png"), GUIMain.getInstance().sb.WIDTH, GUIMain.getInstance().sb.HEIGHT));
                 index++;
                 imageCount++;
                 } else {
@@ -89,7 +89,7 @@ public class orderDetail extends JPanel {
         this.imageCount=Zero;
     }
 
-    private static String extractValue(String text, String pattern) {
+    public String extractValue(String text, String pattern) {
         Pattern regex = Pattern.compile(pattern);
         Matcher matcher = regex.matcher(text);
 
