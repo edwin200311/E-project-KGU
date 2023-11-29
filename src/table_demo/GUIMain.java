@@ -28,10 +28,6 @@ import test.Main;
 public class GUIMain {
     // 싱글톤 패턴 적용 부분
     private static GUIMain main = null;
-
-    private GUIMain() {
-    }
-
     public static GUIMain getInstance() {
         if (main == null)
             main = new GUIMain();
