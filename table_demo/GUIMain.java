@@ -117,7 +117,7 @@ public class GUIMain {
         JPanel bottom = new JPanel(); // 디폴트 플로우레이아웃
         basketTable.tableTitle = "basket";
         basketTable.addComponentsToPane(OrderedItemMgr.getInstance());
-
+        
         bottom.add(basketTable, BorderLayout.CENTER);
         // 여기에 여러 가지 버튼을 넣을 수 있음 - 결재, 취소, 추가, 변경 등
         orderPane.add(bottom, BorderLayout.SOUTH);
