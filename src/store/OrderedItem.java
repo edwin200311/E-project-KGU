@@ -7,9 +7,10 @@ import mgr.Manageable;
 
 public class OrderedItem implements Manageable, UIData {
 	Order order;
-	flower item;
+	Flower item;
 	int howMany;
-	OrderedItem(Order order, flower item, Scanner scan) {
+	
+	OrderedItem(Order order, Flower item, Scanner scan) {
 	    howMany = scan.nextInt();
 		this.item = item;
 		this.order = order;
