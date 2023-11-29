@@ -77,14 +77,14 @@ public class Manager<T extends Manageable> {
 			FileWriter writer = new FileWriter(Savefile, true);
 			System.out.printf("ID를 입력하세요: ");
 			String id = scan.next();
-			flower ynflower = null;
+			Flower ynflower = null;
 			System.out.printf("(예: 장미 튤립 0)\n구매하고 싶은 꽃을 적어주세요: ");
 			while (true) {
 				String flowername = scan.next();
 				if (flowername.equals("0"))
 					break;
 				try {
-					ynflower=(store.flower) store.FlowerMgr.getInstance().find(flowername);
+					ynflower=(store.Flower) store.FlowerMgr.getInstance().find(flowername);
 					//System.out.println(ynflower.getname());
 				} catch (Exception e1) {
 					if (ynflower == null) {
