@@ -70,7 +70,7 @@ public class Manager<T extends Manageable> {
 		mList.add(e);
 	}
 	
-	/*public void Save(String Savefile) {
+	public void Save(String Savefile) {
 		Scanner scan = new Scanner(System.in);
 		ArrayList<String> input = new ArrayList<>();
 		try {
@@ -84,7 +84,7 @@ public class Manager<T extends Manageable> {
 				if (flowername.equals("0"))
 					break;
 				try {
-					ynflower=(store.flower) store.Store.flowerMgr.find(flowername);
+					ynflower=(store.flower) store.FlowerMgr.getInstance().find(flowername);
 					//System.out.println(ynflower.getname());
 				} catch (Exception e1) {
 					if (ynflower == null) {
@@ -107,7 +107,7 @@ public class Manager<T extends Manageable> {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-	}*/
+	}
 
 
 

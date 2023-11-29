@@ -115,6 +115,7 @@ public class TableSelectionDemo extends JPanel implements ListSelectionListener 
 				imgicon = new ImageIcon(icon);
 				image = imgicon.getImage();
 				GUIMain.getInstance().od.changeImg(imgicon);
+				
 			}
 		}
 	}

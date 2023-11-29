@@ -125,14 +125,26 @@ public class GUIMain {
     TableSelectionDemo rorderTable = new TableSelectionDemo();
     ItemTopPanel citemTop = new ItemTopPanel();
     orderDetail od = new orderDetail(null, null, null);
-    showBuy sb = new showBuy();
+    public String[] imagePaths = {
+        "images/None.png",
+        "images/None.png",
+        "images/None.png",
+        "images/None.png",
+        "images/None.png",
+        "images/None.png",
+        "images/None.png",
+        "images/None.png",
+        "images/None.png",
+    };
+    showBuy sb = new showBuy(imagePaths);
     public void setuprorderPane() {
         rorderPane = new JPanel(new BorderLayout());
         
         //지금까지의 꽃 구매 현황 확인
         JPanel west = new JPanel();
+        sb = new showBuy(imagePaths);
         west.add(sb,BorderLayout.CENTER);
-        
+
         // 주문할 상품의 상세정보가 표를 선택할때마다 바뀌어서 출력
         JPanel east = new JPanel();
         ImageIcon icon = null;
@@ -149,8 +161,8 @@ public class GUIMain {
         bottom.add(citemTop, BorderLayout.LINE_START);
         bottom.add(rorderTable, BorderLayout.LINE_END);
 
-        //west.setPreferredSize(new Dimension(400, 400));
-        //east.setPreferredSize(new Dimension(800, 300));
+        west.setPreferredSize(new Dimension(400, 400));
+        east.setPreferredSize(new Dimension(800, 300));
         rorderPane.add(bottom, BorderLayout.SOUTH);
         rorderPane.add(west, BorderLayout.WEST);
         rorderPane.add(east, BorderLayout.EAST);
