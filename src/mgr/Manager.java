@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import store.flower;
+import store.Flower;
 
 public class Manager<T extends Manageable> {
 	public ArrayList<T> mList = new ArrayList<>();
@@ -108,8 +108,5 @@ public class Manager<T extends Manageable> {
 			e.printStackTrace();
 		}
 	}
-
-
-
 
 }
