@@ -9,12 +9,13 @@ import mgr.Manageable;
 
 public class Order implements Manageable, UIData {
 	int orderId;
-	user user;
+	User user;
 	String date;
 	String address;
 	boolean payed;
 	int point;
 	List<OrderedItem> orderedItemList = new ArrayList<>();
+	
 	public void read(Scanner scan) {
 		// 3 park 20201010 주소 O F3124 3 F3223 1 0
 		orderId = scan.nextInt();
