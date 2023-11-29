@@ -3,9 +3,7 @@ package store;
 import java.util.List;
 
 import facade.DataEngineImpl;
-import facade.UIData;
-import mgr.Factory;
-import mgr.Manager;
+
 
 public class OrderedItemMgr extends DataEngineImpl<OrderedItem> {
 	private static OrderedItemMgr engine = null;
