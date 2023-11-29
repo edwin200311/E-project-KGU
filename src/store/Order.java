@@ -23,13 +23,13 @@ public class Order implements Manageable, UIData {
 		date = scan.next();
 		address = scan.next();
 		//payed = (scan.next().charAt(0) == 'O');
-	    flower item = null;
+	    Flower item = null;
 	    String code = null;
 	    while (true) {
 	    	code = scan.next();
 	    	if (code.contentEquals("0"))
 	    		break;
-			item = (flower)FlowerMgr.getInstance().find(code);
+			item = (Flower)FlowerMgr.getInstance().find(code);
 		    if (item == null) {
 		    	System.out.println("해당 코드 상품 없음: " + code);
 		    	scan.nextInt();
