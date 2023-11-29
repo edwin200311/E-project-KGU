@@ -87,6 +87,7 @@ public class Order implements Manageable, UIData {
 		}
 	}
 
+
 	@Override
 	public void set(Object[] uitexts) {
 		// TODO Auto-generated method stub
@@ -100,7 +101,6 @@ public class Order implements Manageable, UIData {
 		texts[2] = date;
 		texts[3] = address;
 		texts[4] = "O";
-		if (!payed) texts[4] = "X";
 		texts[5] = ""+point;
 		return texts;
 	}

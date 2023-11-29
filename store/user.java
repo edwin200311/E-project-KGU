@@ -11,6 +11,8 @@ public class user implements Manageable {
 	String pwd;
 	int point;
 	int waitPoint;
+	int one;
+	int two;
 	ArrayList<Order> myOrderList = new ArrayList<>();
 	public void read(Scanner scan) {  
 		id = scan.next();

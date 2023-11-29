@@ -3,6 +3,11 @@ package table_demo;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.awt.event.ActionEvent;
@@ -18,6 +23,9 @@ public class showBuy extends JPanel {
     Integer HEIGHT = 200;
     LocalDateTime curDateTime = LocalDateTime.now();
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    String Rresult;
+    String filePath = "order.txt";
+    String ufilePath = "users.txt";
     public showBuy(String[] imagePaths) {
         this.setLayout(new BorderLayout());
 
@@ -55,9 +63,27 @@ public class showBuy extends JPanel {
                 if(IDandAddress!=null){
                     String formattedDate = curDateTime.format(formatter);
                     StringBuilder result = new StringBuilder();
-                    result.append(IDandAddress[0]).append(" ").append(IDandAddress[1]).append(" ").append(formattedDate).append(" ").append(test);
-                    String Rresult = result.toString().trim();
+                    result.append(IDandAddress[0]).append(" ").append(formattedDate).append(" ").append(IDandAddress[1]).append(" ").append(test);
+                    Rresult = result.toString().trim();
                     System.out.println(Rresult);
+                }
+                try(BufferedWriter writer = new BufferedWriter(new FileWriter(filePath,true))){
+                    int lineNumber = countLines(filePath)+1;
+                    writer.write(String.format("%d %s",lineNumber,Rresult));
+                    writer.newLine();
+                } catch (IOException ex){
+                    System.err.println("오류발생 ");
+                }
+                try(BufferedWriter writer = new BufferedWriter(new FileWriter(ufilePath,true))){
+                    writer.write(String.format("%s %s 0",IDandAddress[0],IDandAddress[0]));
+                    writer.newLine();
+                } catch (IOException ex2){
+                    System.out.println("오류 발생");
+                }
+
+                for (int i = 0; i < labels.length; i++) {
+                    labels[i].setIcon(resize(new ImageIcon("images/None.png"),WIDTH,HEIGHT));
+                    GUIMain.getInstance().od.reset(Zero);
                 }
             }
         });
@@ -96,5 +122,12 @@ public class showBuy extends JPanel {
         Image resizedImage = originalImage.getScaledInstance(width, height, Image.SCALE_SMOOTH);
 
         return new ImageIcon(resizedImage);
+    }
+    public int countLines(String filePath) throws IOException {
+        int lines = 0;
+        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+            while (reader.readLine() != null) lines++;
+        }
+        return lines;
     }
 }

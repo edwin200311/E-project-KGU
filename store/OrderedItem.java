@@ -40,12 +40,13 @@ public class OrderedItem implements Manageable, UIData {
 	@Override
 	public String[] getUiTexts() {  // "주문번호", "사용자", "상품명", "개수", "소계"
 		// TODO Auto-generated method stub
-		String[] texts = new String[5];
+		String[] texts = new String[6];
 		texts[0] = ""+order.orderId;
 		texts[1] = order.user.id;
 		texts[2] = item.name;
 		texts[3] = ""+howMany;
-		texts[4] = ""+subTotal();
+		texts[5] = ""+subTotal();
+		texts[4] = String.format("%d",item.cost);
 		return texts;
 	}
 }

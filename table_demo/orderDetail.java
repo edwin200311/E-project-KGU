@@ -88,7 +88,6 @@ public class orderDetail extends JPanel {
                         orderlist[inlistIndex][0] = extractedName;
                         orderlist[inlistIndex][1] = "1";
                     }
-
                     index++;
                     imageCount++;
                 } else {
@@ -125,12 +124,11 @@ public class orderDetail extends JPanel {
 
     public String getorderList() {
         StringBuilder result = new StringBuilder();
-
-        for (int i = 0; i <= inlistIndex; i++) {
+        for (int i = 0; i < imageCount; i++) {
             if (orderlist[i][0] != null) {
                 String flowerName = orderlist[i][0];
                 int count = Integer.parseInt(orderlist[i][1]);
-                result.append(flowerName).append(count).append(" ");
+                result.append(flowerName).append(" ").append(count).append(" ");
 
             }
         }

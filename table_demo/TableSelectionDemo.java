@@ -84,7 +84,9 @@ public class TableSelectionDemo extends JPanel implements ListSelectionListener 
 		dlg.pack();
 		dlg.setVisible(true);
 	}
-
+	public DefaultTableModel getModel(){
+		return this.tableModel;
+	}
 	// 선택된 행이 변경되면 그 내용을 편집창으로 보냄
 	public void valueChanged(ListSelectionEvent e) {
 		ListSelectionModel lsm = (ListSelectionModel) e.getSource();

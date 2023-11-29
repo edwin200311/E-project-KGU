@@ -2,10 +2,13 @@ package table_demo;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.Graphics;
 import java.util.List;
 import java.awt.GridLayout;
 import java.awt.image.BufferedImage;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -14,11 +17,13 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
+import javax.swing.table.DefaultTableModel;
 
 import facade.UIData;
 import store.FlowerMgr;
 import store.OrderMgr;
 import store.OrderedItemMgr;
+import test.Main;
 
 public class GUIMain {
     // 싱글톤 패턴 적용 부분
@@ -55,11 +60,13 @@ public class GUIMain {
         // 탭을 생성하고 두개 패널을 추가한다.
         JTabbedPane jtab = new JTabbedPane();
 
+        setupmainPane();
         setupfirstPane();
         setuprorderPane();
         setupItemPane();
         setupOrderPane();
         // 아이템 리스트 탭과 주문 탭 두 개의 패널을 가지는 탭 패널
+        jtab.add("소비자.첫화면",mainPane);
         jtab.add("소비자.꽃사전", scrollPane);
         jtab.add("소비자.주문", rorderPane);
         jtab.add("관리자.아이템", itemPane);
@@ -70,6 +77,16 @@ public class GUIMain {
         mainFrame.pack();
         mainFrame.setVisible(true);
     }
+
+    private JPanel mainPane;
+    private void setupmainPane(){
+        mainPane = new JPanel(new BorderLayout());
+        ImageIcon background = new ImageIcon("images/main.png");
+		background=GUIMain.getInstance().od.resize(background, 1280, 720);
+        JLabel label = new JLabel(background);
+        mainPane.add(label,BorderLayout.CENTER);
+    }
+    
 
     // 상품을 보여주는 패널 부분 - 탑과 JTable 포함
     private JPanel itemPane;
@@ -103,13 +120,11 @@ public class GUIMain {
 
         bottom.add(basketTable, BorderLayout.CENTER);
         // 여기에 여러 가지 버튼을 넣을 수 있음 - 결재, 취소, 추가, 변경 등
-        bottom.add(new JLabel("장바구니 테스트"), BorderLayout.LINE_END);
         orderPane.add(bottom, BorderLayout.SOUTH);
     }
 
     private JPanel firstPane;
     private JScrollPane scrollPane = new JScrollPane();
-
     private void setupfirstPane() {
         firstPane = new JPanel(new BorderLayout());
         // 현재 꽃 42개-> Layout 14x3으로 설정
@@ -170,5 +185,4 @@ public class GUIMain {
         rorderPane.add(west, BorderLayout.LINE_START);
         rorderPane.add(east, BorderLayout.EAST);
     }
-
 }

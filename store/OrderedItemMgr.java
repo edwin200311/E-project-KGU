@@ -17,7 +17,7 @@ public class OrderedItemMgr extends DataEngineImpl<OrderedItem> {
 			engine = new OrderedItemMgr();
 		return engine;
 	}
-	private String[] headers = {"주문번호", "사용자", "상품명", "개수", "소계"};
+	private String[] headers = {"주문번호", "사용자", "상품명", "개수","가격","소계"};
 	Order order;
 	public void setOrder(int n) {
 		order = OrderMgr.getInstance().find(""+n);
