@@ -1,12 +1,11 @@
 package store;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 import mgr.Manageable;
 
-public class user implements Manageable {
+public class User implements Manageable {
 	String id;
 	String pwd;
 	int point;
@@ -14,6 +13,7 @@ public class user implements Manageable {
 	int one;
 	int two;
 	ArrayList<Order> myOrderList = new ArrayList<>();
+	
 	public void read(Scanner scan) {  
 		id = scan.next();
 		pwd = scan.next();
