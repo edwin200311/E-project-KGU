@@ -1,8 +1,6 @@
 package store;
 
 import facade.DataEngineImpl;
-import mgr.Factory;
-import mgr.Manager;
 
 public class OrderMgr extends DataEngineImpl<Order> {
 	private static OrderMgr engine = null;
