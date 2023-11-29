@@ -49,7 +49,6 @@ public class showBuy extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 // buyItem 버튼을 눌렀을 때의 동작을 여기에 추가
                 String test = GUIMain.getInstance().od.getorderList();
-                System.out.println(test);
                 // ID 입력 다이얼로그 표시
                 String[] IDandAddress = showIDAndAddressInputDialog();
 
