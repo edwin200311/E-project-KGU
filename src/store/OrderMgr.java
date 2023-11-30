@@ -15,5 +15,5 @@ public class OrderMgr extends DataEngineImpl<Order> {
 		return engine;
 	}
 
-	private String[] headers = { "주문번호", "고객아이디", "날짜", "주소", "결재여부", "포인트" };
+	private String[] headers = { "주문번호", "고객아이디", "날짜", "주소", "연락처", "포인트" };
 }
