@@ -12,17 +12,18 @@ public class Order implements Manageable, UIData {
 	User user;
 	String date;
 	String address;
-	boolean payed;
+	//결재대기 대신 전화번호추가
+	String phone;    
 	int point;
 	List<OrderedItem> orderedItemList = new ArrayList<>();
 	
 	public void read(Scanner scan) {
-		// 3 park 20201010 주소 O F3124 3 F3223 1 0
+		// 3 park 20201010 주소 010-0000-0000 F3124 3 F3223 1 0
 		orderId = scan.nextInt();
 		String userId = scan.next();
 		date = scan.next();
 		address = scan.next();
-		//payed = (scan.next().charAt(0) == 'O');
+		phone=scan.next();
 	    Flower item = null;
 	    String code = null;
 	    while (true) {
@@ -64,6 +65,8 @@ public class Order implements Manageable, UIData {
 			return true;
 		if(address.contains(kwd))
 			return true;
+		if(phone.contains(kwd))
+			return true;
 		return false;
     }
 	public boolean matches(String[] kwdArr) {
@@ -79,8 +82,6 @@ public class Order implements Manageable, UIData {
 	void print(boolean bDetail) { // Order
 		System.out.format("[주문아이디:%2d] 사용자: %s - 포인트: %d점 ", 
 				orderId, user.id, point);
-		if (!payed)
-			System.out.printf(" (결재대기)");
 		System.out.println();
 		for (OrderedItem od: orderedItemList) {
 			System.out.print("\t");
@@ -101,7 +102,7 @@ public class Order implements Manageable, UIData {
 		texts[1] = user.id;
 		texts[2] = date;
 		texts[3] = address;
-		texts[4] = "O";
+		texts[4] = phone;
 		texts[5] = ""+point;
 		return texts;
 	}
