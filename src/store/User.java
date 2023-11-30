@@ -21,9 +21,7 @@ public class User implements Manageable {
 	}
 	void addOrder(Order od) {
 		myOrderList.add(od);
-	    if (od.payed)
 	    	point += od.point;
-	    else
 	    	waitPoint += od.point;
 	}
 	public boolean matches(String kwd) {
@@ -39,8 +37,6 @@ public class User implements Manageable {
 	public void print() {
 		System.out.format("[%s] (%d점) ", 
 				id, point);
-		if (waitPoint > 0)
-			System.out.printf(" 결재대기: %d점", waitPoint);
 		System.out.println();
 		for (Order od: myOrderList) {
 			System.out.print("   ");
