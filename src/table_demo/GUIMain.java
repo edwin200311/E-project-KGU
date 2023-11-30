@@ -55,7 +55,6 @@ public class GUIMain {
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         // 탭을 생성하고 두개 패널을 추가한다.
         JTabbedPane jtab = new JTabbedPane();
-
         setupmainPane();
         setupfirstPane();
         setuprorderPane();
@@ -67,7 +66,7 @@ public class GUIMain {
         jtab.add("소비자.주문", rorderPane);
         jtab.add("관리자.아이템", itemPane);
         jtab.add("관리자.주문", orderPane);
-        jtab.setTabPlacement(JTabbedPane.RIGHT);
+        jtab.setTabPlacement(JTabbedPane.NORTH);
         mainFrame.getContentPane().add(jtab);
         // Display the window.
         mainFrame.pack();

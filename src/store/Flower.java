@@ -9,11 +9,11 @@ public class Flower implements Manageable, UIData {
     String name; // 이름
     String language; // 꽃말
     String floweringTime; // 개화시기
-    String colorCategory; //색 분류
+    String colorCategory; // 색 분류
     String color; // 색상
     String care; // 관리법
     int cost; // 가격
-    int count; //재고
+    int count; // 재고
 
     @Override
     public void read(Scanner scan) {
@@ -29,19 +29,21 @@ public class Flower implements Manageable, UIData {
 
     @Override
     public void print() {
-        System.out.printf("이름: %s | 꽃말: %s | 개화시기: %s | 색상: %s | 관리법: %s | 가격: %d\n", 
-                          this.name, this.language, this.floweringTime, this.color, this.care, this.cost);
+        System.out.printf("이름: %s | 꽃말: %s | 개화시기: %s | 색상: %s | 관리법: %s | 가격: %d\n",
+                this.name, this.language, this.floweringTime, this.color, this.care, this.cost);
     }
 
     @Override
     public boolean matches(String kwd) {
         if (name.contains(kwd))
             return true;
-        else if (language.contains(kwd))
+        if (language.contains(kwd))
             return true;
-        else if (floweringTime.contains(kwd))
+        if (floweringTime.contains(kwd))
             return true;
-        else if (colorCategory.contains(kwd))
+        if (colorCategory.contains(kwd))
+            return true;
+        if(color.contains(kwd))
             return true;
         else
             return false;

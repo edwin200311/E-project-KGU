@@ -37,6 +37,7 @@ public class showBuy extends JPanel {
             west.add(labels[i]);
         }
 
+        this.setPreferredSize(new Dimension(600,600));
         this.add(west, BorderLayout.CENTER);
         this.add(resetItem, BorderLayout.NORTH);
         this.add(buyItem, BorderLayout.PAGE_END);
