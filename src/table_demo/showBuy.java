@@ -63,7 +63,7 @@ public class showBuy extends JPanel {
                 if(IDandAddress!=null){
                     String formattedDate = curDateTime.format(formatter);
                     StringBuilder result = new StringBuilder();
-                    result.append(IDandAddress[0]).append(" ").append(formattedDate).append(" ").append(IDandAddress[1]).append(" ")..append(IDandAddress[2]).append(" ").append(test);
+                    result.append(IDandAddress[0]).append(" ").append(formattedDate).append(" ").append(IDandAddress[1]).append(" ").append(IDandAddress[2]).append(" ").append(test);
                     Rresult = result.toString().trim();
                     System.out.println(Rresult);
                 }
