@@ -161,10 +161,10 @@ public class GUIMain {
         String imgName = "notChosen";
         icon = new ImageIcon("images/" + imgName + ".png");
         if(imgName.equals("notChosen")){
-            icon=GUIMain.getInstance().od.resize(icon, 300, 500);
+            icon=GUIMain.getInstance().od.resize(icon, 300, 300);
         }
         od = new orderDetail("", "", icon);
-        east.add(od, BorderLayout.CENTER);
+        east.add(od, BorderLayout.BEFORE_FIRST_LINE);
 
         // 주문할 상품을 검색하는 부분
         JPanel bottom = new JPanel();
@@ -174,10 +174,10 @@ public class GUIMain {
         bottom.add(citemTop, BorderLayout.LINE_START);
         bottom.add(rorderTable, BorderLayout.LINE_END);
 
-        west.setPreferredSize(new Dimension(600, 400));
-        east.setPreferredSize(new Dimension(800, 300));
-        rorderPane.add(bottom, BorderLayout.SOUTH);
+        west.setPreferredSize(new Dimension(600, 100));
+        east.setPreferredSize(new Dimension(800, 500));
+        rorderPane.add(bottom, BorderLayout.EAST);
         rorderPane.add(west, BorderLayout.LINE_START);
-        rorderPane.add(east, BorderLayout.EAST);
+        rorderPane.add(east, BorderLayout.SOUTH);
     }
 }
