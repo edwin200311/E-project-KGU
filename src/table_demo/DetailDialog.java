@@ -35,7 +35,7 @@ public class DetailDialog extends javax.swing.JDialog {
 		JLabel photo = new JLabel(flowertestIcon);
 		photo.setOpaque(true);  // JLabel은 기본이 배경 투명
 		photo.setPreferredSize(new Dimension(270, 270));
-		photo.setBackground(Color.YELLOW);
+		photo.setBackground(Color.LIGHT_GRAY);
 		setTitle(itemDetails[0]);
 
 		lpane.add(details[0]);
