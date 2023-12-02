@@ -28,6 +28,7 @@ public class Manager<T extends Manageable> {
 		filein.close();
 	}
 
+
 	public void printAll() {
 		for (T m : mList) {
 			m.print();

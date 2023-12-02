@@ -135,6 +135,7 @@ public class GUIMain {
     TableSelectionDemo rorderTable = new TableSelectionDemo();
     ItemTopPanel citemTop = new ItemTopPanel();
     orderDetail od = new orderDetail(null, null, null);
+    
     public String[] imagePaths = {
         "images/None.png",
         "images/None.png",
@@ -164,20 +165,31 @@ public class GUIMain {
             icon=GUIMain.getInstance().od.resize(icon, 300, 300);
         }
         od = new orderDetail("", "", icon);
-        east.add(od, BorderLayout.BEFORE_FIRST_LINE);
+        east.add(od, BorderLayout.WEST);
 
         // 주문할 상품을 검색하는 부분
         JPanel bottom = new JPanel();
+        JPanel buyPane = new JPanel(new BorderLayout());
+        JScrollPane scrollPane=new JScrollPane();
+        buyPane.setLayout(new GridLayout(14, 3));
+        List<?> itemlist = FlowerMgr.getInstance().search("");
+        for(Object o : itemlist) {
+            buyPane.add(new buyingImageCell((UIData) o));
+        }
+        scrollPane = new JScrollPane(buyPane);
+        scrollPane.setPreferredSize(new Dimension(600, 1000));
+        bottom.add(scrollPane,BorderLayout.LINE_START);
+
         rorderTable.tableTitle = "find";
         rorderTable.addComponentsToPane(FlowerMgr.getInstance());
         citemTop.setupTopPane(rorderTable);
-        bottom.add(citemTop, BorderLayout.LINE_START);
-        bottom.add(rorderTable, BorderLayout.LINE_END);
+        //bottom.add(citemTop, BorderLayout.LINE_START);
+        //bottom.add(rorderTable, BorderLayout.LINE_END);
 
         west.setPreferredSize(new Dimension(600, 100));
-        east.setPreferredSize(new Dimension(800, 500));
-        rorderPane.add(bottom, BorderLayout.EAST);
-        rorderPane.add(west, BorderLayout.LINE_START);
+        east.setPreferredSize(new Dimension(300, 500));
+        rorderPane.add(bottom, BorderLayout.CENTER);
+        rorderPane.add(west, BorderLayout.WEST);
         rorderPane.add(east, BorderLayout.SOUTH);
     }
 }

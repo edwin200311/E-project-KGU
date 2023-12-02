@@ -77,6 +77,14 @@ public class Flower implements Manageable, UIData {
         return texts;
     }
 
+    public int getcount(){
+        return this.count;
+    }
+
+    public void minuscount(){
+        this.count-=1;
+    }
+
     public String getname() {
         return this.name;
     }

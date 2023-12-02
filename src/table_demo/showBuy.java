@@ -1,6 +1,11 @@
 package table_demo;
 
 import javax.swing.*;
+
+import facade.UIData;
+import store.Flower;
+import store.FlowerMgr;
+
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
@@ -66,6 +71,9 @@ public class showBuy extends JPanel {
                     result.append(IDandAddress[0]).append(" ").append(formattedDate).append(" ").append(IDandAddress[1]).append(" ").append(IDandAddress[2]).append(" ").append(test);
                     Rresult = result.toString().trim();
                     System.out.println(Rresult);
+                    
+                } else {
+                    
                 }
                 try(BufferedWriter writer = new BufferedWriter(new FileWriter(filePath,true))){
                     int lineNumber = countLines(filePath)+1;
