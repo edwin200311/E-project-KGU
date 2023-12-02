@@ -165,7 +165,7 @@ public class GUIMain {
             icon=GUIMain.getInstance().od.resize(icon, 300, 300);
         }
         od = new orderDetail("", "", icon);
-        east.add(od, BorderLayout.WEST);
+        east.add(od, BorderLayout.LINE_START);
 
         // 주문할 상품을 검색하는 부분
         JPanel bottom = new JPanel();
@@ -178,7 +178,7 @@ public class GUIMain {
         }
         scrollPane = new JScrollPane(buyPane);
         scrollPane.setPreferredSize(new Dimension(600, 1000));
-        bottom.add(scrollPane,BorderLayout.LINE_START);
+        bottom.add(scrollPane,BorderLayout.CENTER);
 
         rorderTable.tableTitle = "find";
         rorderTable.addComponentsToPane(FlowerMgr.getInstance());
@@ -188,8 +188,8 @@ public class GUIMain {
 
         west.setPreferredSize(new Dimension(600, 100));
         east.setPreferredSize(new Dimension(300, 500));
-        rorderPane.add(bottom, BorderLayout.CENTER);
         rorderPane.add(west, BorderLayout.WEST);
+        rorderPane.add(bottom, BorderLayout.EAST);
         rorderPane.add(east, BorderLayout.SOUTH);
     }
 }
