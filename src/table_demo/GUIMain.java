@@ -19,6 +19,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 import facade.UIData;
@@ -139,7 +140,7 @@ public class GUIMain {
     TableSelectionDemo rorderTable = new TableSelectionDemo();
     ItemTopPanel citemTop = new ItemTopPanel();
     orderDetail od = new orderDetail(null, null, null);
-
+    showCost sc = new showCost(null);
     public String[] imagePaths = {
             "images/None.png",
             "images/None.png",
@@ -185,7 +186,9 @@ public class GUIMain {
         }
         scrollPane = new JScrollPane(buyPane);
         scrollPane.setPreferredSize(new Dimension(450, 600));
-        bottom.add(scrollPane, BorderLayout.CENTER);
+        bottom.add(sc,BorderLayout.WEST);
+        bottom.add(scrollPane, BorderLayout.EAST);
+        
 
         rorderTable.tableTitle = "find";
         rorderTable.addComponentsToPane(FlowerMgr.getInstance());
@@ -193,8 +196,10 @@ public class GUIMain {
         // bottom.add(citemTop, BorderLayout.LINE_START);
         // bottom.add(rorderTable, BorderLayout.LINE_END);
 
-        west.setPreferredSize(new Dimension(100, 100));
-        // east.setPreferredSize(new Dimension(300, 500));
+        west.setPreferredSize(new Dimension(300, 100));
+        east.setPreferredSize(new Dimension(300, 600));
+
+
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.weightx = 0.5;
@@ -205,13 +210,13 @@ public class GUIMain {
         gbc.gridx = 1;
         gbc.gridy = 0;
         gbc.weightx = 0.7;
-        gbc.weighty = 0.0; // 변경된 부분
+        gbc.weighty = 0.01; // 변경된 부분
         fourpanel.add(bottom, gbc);
 
         gbc.gridx = 0;
         gbc.gridy = 1;
         gbc.weightx = 0.3;
-        gbc.weighty = 1.0; // 변경된 부분
+        gbc.weighty = 0.99; // 변경된 부분
         gbc.anchor = GridBagConstraints.NORTH;
         fourpanel.add(east, gbc);
 

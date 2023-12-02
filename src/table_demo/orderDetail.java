@@ -50,7 +50,7 @@ public class orderDetail extends JPanel {
 
         this.add(label, BorderLayout.EAST);
         this.add(scrollPane, BorderLayout.WEST);
-        this.add(addItem, BorderLayout.PAGE_END);
+        this.add(addItem, BorderLayout.NORTH);
         this.add(imageLabel, BorderLayout.CENTER);
         textArea.setEditable(false);
 

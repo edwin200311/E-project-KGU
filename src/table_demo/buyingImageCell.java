@@ -55,20 +55,24 @@ public class buyingImageCell extends JPanel implements MouseListener {
 		String language = item.getUiTexts()[1];
 		String flowering = item.getUiTexts()[2];
 		String color = item.getUiTexts()[3];
-		String cost = item.getUiTexts()[4];
-		String care = item.getUiTexts()[5];
+		String cost = item.getUiTexts()[5];
+		String care = item.getUiTexts()[4];
 		String icon = null;
 		ImageIcon imgicon = null;
 		Image image = null;
+		Integer allCost=0;
 
 		Font font = new Font("SansSerif", Font.PLAIN, 16); // 원하는 폰트, 스타일, 크기 설정
 				GUIMain.getInstance().od.textArea.setFont(font);
 				GUIMain.getInstance().od.textArea.setText("이름: " + name + "\n" + "꽃말: " + language + "\n" + "개화시기: "
-						+ flowering + "\n" + "색상: " + color + "\n" + "관리방법: " + cost + "\n" + "가격: " + care+"원");
+						+ flowering + "\n" + "색상: " + color + "\n" + "관리방법: " + care + "\n" + "가격: " + cost+"원");
 				icon = "images/" + name + ".png";
 				imgicon = new ImageIcon(icon);
 				image = imgicon.getImage();
 				GUIMain.getInstance().od.changeImg(imgicon);
+				allCost += Integer.valueOf(cost);
+				GUIMain.getInstance().sc.textField.setFont(font);
+				GUIMain.getInstance().sc.textField.setText(String.valueOf(allCost)+"원");
 	}
 
 	@Override
