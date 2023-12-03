@@ -210,13 +210,13 @@ public class GUIMain {
         gbc.gridx = 1;
         gbc.gridy = 0;
         gbc.weightx = 0.7;
-        gbc.weighty = 0.01; // 변경된 부분
+        gbc.weighty = 0.01; 
         fourpanel.add(bottom, gbc);
 
         gbc.gridx = 0;
         gbc.gridy = 1;
         gbc.weightx = 0.3;
-        gbc.weighty = 0.99; // 변경된 부분
+        gbc.weighty = 0.99; 
         gbc.anchor = GridBagConstraints.NORTH;
         fourpanel.add(east, gbc);
 

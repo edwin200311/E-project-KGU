@@ -20,12 +20,14 @@ import javax.swing.SwingConstants;
 
 @SuppressWarnings("serial")
 public class showCost extends JPanel {
-    public JTextField textField = new JTextField(7);
+    public JTextField textField = new JTextField(15);
 
     public showCost(String defaultText){
         this.setLayout(new BorderLayout());
 
         textField = new JTextField(defaultText);
+        textField.setColumns(15);
+        textField.setHorizontalAlignment(JTextField.CENTER);
         this.add(textField,BorderLayout.CENTER);
     }
 }
