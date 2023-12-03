@@ -40,7 +40,9 @@ public class orderDetail extends JPanel {
         JButton addItem = new JButton("추가");
         textArea = new JTextArea(defaultText);
         JScrollPane scrollPane = new JScrollPane(textArea);
-        scrollPane.setPreferredSize(new Dimension(400, 400));
+        textArea.setLineWrap(true);  
+        textArea.setWrapStyleWord(true);  
+        scrollPane.setPreferredSize(new Dimension(250, 50));
         this.imageIcon = imageIcon;
 
         imageLabel = new JLabel(imageIcon);
@@ -48,10 +50,10 @@ public class orderDetail extends JPanel {
         label.setVerticalTextPosition(SwingConstants.CENTER);
         label.setHorizontalTextPosition(SwingConstants.RIGHT);
 
-        this.add(label, BorderLayout.EAST);
+        //this.add(label, BorderLayout.EAST);
         this.add(scrollPane, BorderLayout.WEST);
         this.add(addItem, BorderLayout.NORTH);
-        this.add(imageLabel, BorderLayout.CENTER);
+        this.add(imageLabel, BorderLayout.EAST);
         textArea.setEditable(false);
 
         addItem.addActionListener(new ActionListener() {

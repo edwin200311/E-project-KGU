@@ -168,9 +168,12 @@ public class GUIMain {
         String imgName = "notChosen";
         icon = new ImageIcon("images/" + imgName + ".png");
         if (imgName.equals("notChosen")) {
+            icon = GUIMain.getInstance().od.resize(icon, 200, 300);
+        } else{
             icon = GUIMain.getInstance().od.resize(icon, 300, 300);
         }
         od = new orderDetail("", "", icon);
+        od.setPreferredSize(new Dimension(500, 300));
         east.add(od, BorderLayout.LINE_START);
 
         // 주문할 상품을 검색하는 부분
@@ -196,10 +199,6 @@ public class GUIMain {
         // bottom.add(citemTop, BorderLayout.LINE_START);
         // bottom.add(rorderTable, BorderLayout.LINE_END);
 
-        west.setPreferredSize(new Dimension(300, 100));
-        east.setPreferredSize(new Dimension(300, 600));
-
-
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.weightx = 0.5;
@@ -219,6 +218,11 @@ public class GUIMain {
         gbc.weighty = 0.99; 
         gbc.anchor = GridBagConstraints.NORTH;
         fourpanel.add(east, gbc);
+        west.setPreferredSize(new Dimension(300, 100));
+        
+
+
+        
 
         rorderPane.add(fourpanel, BorderLayout.CENTER);
         // rorderPane.add(west, BorderLayout.WEST);
