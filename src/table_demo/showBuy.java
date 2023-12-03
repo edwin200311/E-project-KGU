@@ -17,7 +17,6 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.awt.event.ActionEvent;
 
-
 @SuppressWarnings("serial")
 public class showBuy extends JPanel {
     public ImageIcon imageIcon;
@@ -30,6 +29,7 @@ public class showBuy extends JPanel {
     String Rresult;
     String filePath = "order.txt";
     String ufilePath = "users.txt";
+
     public showBuy(String[] imagePaths) {
         this.setLayout(new BorderLayout());
 
@@ -38,11 +38,11 @@ public class showBuy extends JPanel {
         JButton resetItem = new JButton("초기화");
 
         for (int i = 0; i < labels.length; i++) {
-            labels[i] = new JLabel(resize(new ImageIcon(imagePaths[i]), WIDTH,HEIGHT));
+            labels[i] = new JLabel(resize(new ImageIcon(imagePaths[i]), WIDTH, HEIGHT));
             west.add(labels[i]);
         }
 
-        this.setPreferredSize(new Dimension(400,400));
+        this.setPreferredSize(new Dimension(400, 400));
         this.add(west, BorderLayout.CENTER);
         this.add(resetItem, BorderLayout.NORTH);
         this.add(buyItem, BorderLayout.PAGE_END);
@@ -52,7 +52,7 @@ public class showBuy extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 // 초기 이미지로 모든 레이블 초기화
                 for (int i = 0; i < labels.length; i++) {
-                    labels[i].setIcon(resize(new ImageIcon("images/None.png"),WIDTH,HEIGHT));
+                    labels[i].setIcon(resize(new ImageIcon("images/None.png"), WIDTH, HEIGHT));
                     GUIMain.getInstance().od.reset(Zero);
                 }
             }
@@ -60,37 +60,40 @@ public class showBuy extends JPanel {
         buyItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                
+
                 // buyItem 버튼을 눌렀을 때의 동작을 여기에 추가
                 String test = GUIMain.getInstance().od.getorderList();
                 // ID 입력 다이얼로그 표시
                 String[] IDandAddress = showIDAndAddressInputDialog();
 
-                if(IDandAddress!=null){
+                if (IDandAddress != null) {
                     String formattedDate = curDateTime.format(formatter);
                     StringBuilder result = new StringBuilder();
-                    result.append(IDandAddress[0]).append(" ").append(formattedDate).append(" ").append(IDandAddress[1]).append(" ").append(IDandAddress[2]).append(" ").append(test);
+                    result.append(IDandAddress[0]).append(" ").append(formattedDate).append(" ").append(IDandAddress[1])
+                            .append(" ").append(IDandAddress[2]).append(" ").append(test);
                     Rresult = result.toString().trim();
                     System.out.println(Rresult);
-                    
+
                 } else {
-                    
+
                 }
-                try(BufferedWriter writer = new BufferedWriter(new FileWriter(filePath,true))){
-                    int lineNumber = countLines(filePath)+1;
-                    writer.write(String.format("%d %s",lineNumber,Rresult));
+                try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath, true))) {
+                    int lineNumber = countLines(filePath) + 1;
+                    writer.write(String.format("%d %s", lineNumber, Rresult));
                     writer.newLine();
-                } catch (IOException ex){
+                } catch (IOException ex) {
                     System.err.println("오류발생 ");
                 }
-                try(BufferedWriter writer = new BufferedWriter(new FileWriter(ufilePath,true))){
-                    writer.write(String.format("%s %s 0",IDandAddress[0],IDandAddress[0]));
+                try (BufferedWriter writer = new BufferedWriter(new FileWriter(ufilePath, true))) {
+                    writer.write(String.format("%s %s 0", IDandAddress[0], IDandAddress[0]));
                     writer.newLine();
-                } catch (IOException ex2){
+                } catch (IOException ex2) {
                     System.out.println("오류 발생");
                 }
 
                 for (int i = 0; i < labels.length; i++) {
-                    labels[i].setIcon(resize(new ImageIcon("images/None.png"),WIDTH,HEIGHT));
+                    labels[i].setIcon(resize(new ImageIcon("images/None.png"), WIDTH, HEIGHT));
                     GUIMain.getInstance().od.reset(Zero);
                 }
             }
@@ -120,7 +123,8 @@ public class showBuy extends JPanel {
             String enteredPhone = phoneField.getText();
 
             if (!enteredID.isEmpty() && !enteredAddress.isEmpty() && !enteredPhone.isEmpty()) {
-                return new String[]{enteredID, enteredAddress,enteredPhone};
+                JOptionPane.showMessageDialog(null, "구매가 완료되었습니다.", "구매 완료!", JOptionPane.YES_OPTION);
+                return new String[] { enteredID, enteredAddress, enteredPhone };
             } else {
                 JOptionPane.showMessageDialog(null, "정보를 모두 입력하세요.", "입력 오류", JOptionPane.ERROR_MESSAGE);
             }
@@ -135,10 +139,12 @@ public class showBuy extends JPanel {
 
         return new ImageIcon(resizedImage);
     }
+
     public int countLines(String filePath) throws IOException {
         int lines = 0;
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
-            while (reader.readLine() != null) lines++;
+            while (reader.readLine() != null)
+                lines++;
         }
         return lines;
     }

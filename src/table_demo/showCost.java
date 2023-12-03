@@ -1,33 +1,32 @@
 package table_demo;
 
-import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-import java.awt.Image;
+import java.awt.Font;
 
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
-import javax.swing.SwingConstants;
 
-@SuppressWarnings("serial")
 public class showCost extends JPanel {
-    public JTextField textField = new JTextField(15);
+    private int totalPrice = 0;
+    JLabel cost;
 
-    public showCost(String defaultText){
-        this.setLayout(new BorderLayout());
+    public showCost(String[] imagePaths) {
+        setup(imagePaths);
+    }
 
-        textField = new JTextField(defaultText);
-        textField.setColumns(15);
-        textField.setHorizontalAlignment(JTextField.CENTER);
-        this.add(textField,BorderLayout.CENTER);
+    void setup(String[] imagePaths) {
+        Font font = new Font(TOOL_TIP_TEXT_KEY, ALLBITS, 32);
+        
+        cost = new JLabel("총 비용: " + totalPrice + "원");
+        cost.setFont(font);
+        add(cost);
+    }
+
+    public void updateCost(int flowerPrice) {
+        totalPrice += flowerPrice;
+        cost.setText("총 비용: " + totalPrice + "원");
+    }
+    public void resetCost(){
+        this.totalPrice=0;
+        cost.setText("총 비용: " + totalPrice + "원");
     }
 }

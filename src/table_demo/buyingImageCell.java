@@ -71,8 +71,7 @@ public class buyingImageCell extends JPanel implements MouseListener {
 				image = imgicon.getImage();
 				GUIMain.getInstance().od.changeImg(imgicon);
 				allCost += Integer.valueOf(cost);
-				GUIMain.getInstance().sc.textField.setFont(font);
-				GUIMain.getInstance().sc.textField.setText(String.valueOf(allCost)+"원");
+				
 	}
 
 	@Override

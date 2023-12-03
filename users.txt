@@ -5,3 +5,5 @@ cho ccc 5
 kang kkkk 21
 min mmm 0
 bae bbb 0
+s s 0
+s s 0
