@@ -28,7 +28,6 @@ public class DetailDialog extends javax.swing.JDialog {
 		details[2] = new JLabel("피는시기: " + itemDetails[2]);
 		details[3] = new JLabel("색상: " + itemDetails[3]);
 		details[4] = new JLabel("관리방법: " + itemDetails[4]);
-		details[5] = new JLabel("가격: " + itemDetails[5]);
         
 		String flwclassify = ("images/"+itemDetails[0]+".png");
 		ImageIcon flowertestIcon = new ImageIcon(flwclassify);
@@ -43,7 +42,6 @@ public class DetailDialog extends javax.swing.JDialog {
 		lpane.add(details[2]);
 		lpane.add(details[3]);
 		lpane.add(details[4]);
-		lpane.add(details[5]);
 		pane.add(lpane, BorderLayout.CENTER);
 		pane.add(photo, BorderLayout.LINE_END);
 		this.setMinimumSize(new Dimension(600, 300));  // 대화상자 크기 설정
