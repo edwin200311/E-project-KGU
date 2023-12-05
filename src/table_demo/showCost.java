@@ -14,7 +14,7 @@ public class showCost extends JPanel {
     }
 
     void setup(String[] imagePaths) {
-        Font font = new Font(TOOL_TIP_TEXT_KEY, ALLBITS, 32);
+        Font font = new Font("맑은 고딕", Font.PLAIN, 27);
         
         cost = new JLabel("총 비용: " + totalPrice + "원");
         cost.setFont(font);
