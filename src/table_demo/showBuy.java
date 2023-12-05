@@ -36,9 +36,6 @@ public class showBuy extends JPanel {
         JPanel west = new JPanel(new GridLayout(3, 3, 0, 0));
         JButton buyItem = new JButton("구매");
         JButton resetItem = new JButton("초기화");
-		Font font=new Font("맑은 고딕",Font.BOLD,12);
-		buyItem.setFont(font);
-		resetItem.setFont(font);
 
         for (int i = 0; i < labels.length; i++) {
             labels[i] = new JLabel(resize(new ImageIcon(imagePaths[i]), WIDTH, HEIGHT));
@@ -73,8 +70,8 @@ public class showBuy extends JPanel {
                 if (IDandAddress != null) {
                     String formattedDate = curDateTime.format(formatter);
                     StringBuilder result = new StringBuilder();
-                    result.append(IDandAddress[0]).append(" ").append(IDandAddress[1]).append(" ").append(formattedDate)
-                            .append(" ").append(IDandAddress[2]).append(" ").append(IDandAddress[3]).append(" ").append(test);
+                    result.append(IDandAddress[0]).append(" ").append(formattedDate)
+                            .append(" ").append(IDandAddress[1]).append(" ").append(IDandAddress[2]).append(" ").append(test);
                     Rresult = result.toString().trim();
                     System.out.println(Rresult);
 
@@ -89,7 +86,7 @@ public class showBuy extends JPanel {
                     System.err.println("오류발생 ");
                 }
                 try (BufferedWriter writer = new BufferedWriter(new FileWriter(ufilePath, true))) {
-                    writer.write(String.format("%s %s", IDandAddress[0], IDandAddress[1]));
+                    writer.write(String.format("%s %s 0", IDandAddress[0], IDandAddress[0]));
                     writer.newLine();
                 } catch (IOException ex2) {
                     System.out.println("오류 발생");
@@ -106,16 +103,13 @@ public class showBuy extends JPanel {
 
     // ID와 주소 입력 다이얼로그 표시하는 메서드 + 전화번호
     private String[] showIDAndAddressInputDialog() {
-        JPanel panel = new JPanel(new GridLayout(4, 4));
+        JPanel panel = new JPanel(new GridLayout(3, 3));
         JTextField idField = new JTextField(10);
-        JTextField pwdField = new JTextField(10);
         JTextField addressField = new JTextField(10);
         JTextField phoneField = new JTextField(10);
 
         panel.add(new JLabel("ID:"));
         panel.add(idField);
-        panel.add(new JLabel("PASSWORD:"));
-        panel.add(pwdField);
         panel.add(new JLabel("주소:"));
         panel.add(addressField);
         panel.add(new JLabel("연락처:"));
@@ -125,13 +119,12 @@ public class showBuy extends JPanel {
 
         if (result == JOptionPane.OK_OPTION) {
             String enteredID = idField.getText();
-            String enteredPwd = pwdField.getText();
             String enteredAddress = addressField.getText();
             String enteredPhone = phoneField.getText();
 
-            if (!enteredID.isEmpty() && !enteredPwd.isEmpty()&& !enteredAddress.isEmpty() && !enteredPhone.isEmpty()) {
+            if (!enteredID.isEmpty() && !enteredAddress.isEmpty() && !enteredPhone.isEmpty()) {
                 JOptionPane.showMessageDialog(null, "구매가 완료되었습니다.", "구매 완료!", JOptionPane.YES_OPTION);
-                return new String[] { enteredID, enteredPwd, enteredAddress, enteredPhone };
+                return new String[] { enteredID, enteredAddress, enteredPhone };
             } else {
                 JOptionPane.showMessageDialog(null, "정보를 모두 입력하세요.", "입력 오류", JOptionPane.ERROR_MESSAGE);
             }
