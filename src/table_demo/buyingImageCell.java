@@ -37,13 +37,13 @@ public class buyingImageCell extends JPanel implements MouseListener {
 		setLayout(new BorderLayout());
 		userStrings = item.getUiTexts();
 		imgIcon = new ImageIcon("images/" + userStrings[0] + ".png");
-		Image scaleImage = imgIcon.getImage().getScaledInstance(100, 70, Image.SCALE_DEFAULT);
+		Image scaleImage = imgIcon.getImage().getScaledInstance(100,110, Image.SCALE_DEFAULT);
 		ImageIcon imgResized = new ImageIcon(scaleImage);
 		add(new JLabel(imgResized), BorderLayout.CENTER);
-		String itemLabelStr = String.format("<html><body><h2>%s <br/>가격: %s원", userStrings[0], userStrings[5]);
+		String itemLabelStr = String.format("<html><body><h3>%s <br/>가격: %s원", userStrings[0], userStrings[5]);
 		JLabel itemLabel = new JLabel(itemLabelStr);
 		itemLabel.setPreferredSize(new Dimension(150, 80));
-		itemLabel.setFont(new Font("굴림", Font.PLAIN, 13));
+		itemLabel.setFont(new Font("맑은 고딕", Font.PLAIN, 10));
 		itemLabel.setForeground(Color.black);
 		itemLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		add(itemLabel, BorderLayout.PAGE_END);
@@ -62,10 +62,10 @@ public class buyingImageCell extends JPanel implements MouseListener {
 		Image image = null;
 		Integer allCost=0;
 
-		Font font = new Font("SansSerif", Font.PLAIN, 16); // 원하는 폰트, 스타일, 크기 설정
+		Font font = new Font("맑은 고딕", Font.PLAIN, 14); // 원하는 폰트, 스타일, 크기 설정
 				GUIMain.getInstance().od.textArea.setFont(font);
-				GUIMain.getInstance().od.textArea.setText("이름: " + name + "\n" + "꽃말: " + language + "\n" + "개화시기: "
-						+ flowering + "\n" + "색상: " + color + "\n" + "관리방법: " + care + "\n" + "가격: " + cost+"원");
+				GUIMain.getInstance().od.textArea.setText("이름: " + name + "\n\n" + "꽃말: " + language + "\n\n" + "개화시기: "
+						+ flowering + "\n\n" + "색상: " + color + "\n\n" + "관리방법: " + care + "\n\n" + "가격: " + cost+"원");
 				icon = "images/" + name + ".png";
 				imgicon = new ImageIcon(icon);
 				image = imgicon.getImage();
