@@ -2,6 +2,7 @@ package table_demo;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.regex.Matcher;
@@ -44,9 +45,11 @@ public class orderDetail extends JPanel {
 
     public orderDetail(String labelText, String defaultText, ImageIcon imageIcon) {
         this.setLayout(new BorderLayout());
-
+        
+		Font font=new Font("맑은 고딕",Font.BOLD,12);
         JLabel label = new JLabel(labelText);
         JButton addItem = new JButton("추가");
+        addItem.setFont(font);
         textArea = new JTextArea(defaultText);
         JScrollPane scrollPane = new JScrollPane(textArea);
         textArea.setLineWrap(true);
