@@ -15,6 +15,7 @@ public class Order implements Manageable, UIData {
 	//결재대기 대신 전화번호추가
 	String phone;    
 	int point;
+	int price;
 	List<OrderedItem> orderedItemList = new ArrayList<>();
 	
 	public void read(Scanner scan) {
@@ -38,12 +39,11 @@ public class Order implements Manageable, UIData {
 		    }
 		    orderedItemList.add(new OrderedItem(this, item, scan));
 	    }
-	    int sum = 0;
     	for (OrderedItem or: orderedItemList) {
-	   		sum += or.subTotal();
+    		price += or.subTotal();
 		    OrderedItemMgr.getInstance().addElement(or);
     	}
-    	point += sum / 1000;
+    	point += price / 1000;
     	user = UserMgr.getInstance().find("" + userId);
 	    if (user == null) {
 	    	System.out.println("사용자 아이디 없음: " + userId);
@@ -103,7 +103,7 @@ public class Order implements Manageable, UIData {
 		texts[2] = date;
 		texts[3] = address;
 		texts[4] = phone;
-		texts[5] = ""+point;
+		texts[5] = ""+price+"원";
 		return texts;
 	}
 }
