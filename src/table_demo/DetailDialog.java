@@ -28,6 +28,13 @@ public class DetailDialog extends javax.swing.JDialog {
 		details[2] = new JLabel("피는시기: " + itemDetails[2]);
 		details[3] = new JLabel("색상: " + itemDetails[3]);
 		details[4] = new JLabel("관리방법: " + itemDetails[4]);
+
+		Font font=new Font("맑은 고딕",Font.BOLD,12);
+		details[0].setFont(font);
+		details[1].setFont(font);
+		details[2].setFont(font);
+		details[3].setFont(font);
+		details[4].setFont(font);
         
 		String flwclassify = ("images/"+itemDetails[0]+".png");
 		ImageIcon flowertestIcon = new ImageIcon(flwclassify);
