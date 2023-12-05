@@ -22,8 +22,8 @@ public class showBuy extends JPanel {
     public ImageIcon imageIcon;
     public JLabel[] labels = new JLabel[9]; // 배열로 변경
     public Integer Zero = 0;
-    Integer WIDTH = 150;
-    Integer HEIGHT = 150;
+    Integer WIDTH = 170;
+    Integer HEIGHT = 170;
     LocalDateTime curDateTime = LocalDateTime.now();
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     String Rresult;
@@ -42,7 +42,7 @@ public class showBuy extends JPanel {
             west.add(labels[i]);
         }
 
-        this.setPreferredSize(new Dimension(400, 400));
+        this.setPreferredSize(new Dimension(500, 500));
         this.add(west, BorderLayout.CENTER);
         this.add(resetItem, BorderLayout.NORTH);
         this.add(buyItem, BorderLayout.PAGE_END);
