@@ -1,6 +1,7 @@
 package table_demo;
 
 import java.awt.BorderLayout;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -15,9 +16,12 @@ public class ItemTopPanel extends JPanel {
     void setupTopPane(TableSelectionDemo tableDemo) {
     	JPanel topPane = new JPanel();
         JButton detail = new JButton("상세보기");
+		Font font=new Font("맑은 고딕",Font.BOLD,12);
+        detail.setFont(font);
         topPane.add(detail, BorderLayout.LINE_START);
         topPane.add(kwdTextField, BorderLayout.CENTER);
         JButton search = new JButton("검색");
+        search.setFont(font);
         topPane.add(search, BorderLayout.LINE_END);
         add(topPane, BorderLayout.PAGE_START);
 
