@@ -36,6 +36,9 @@ public class showBuy extends JPanel {
         JPanel west = new JPanel(new GridLayout(3, 3, 0, 0));
         JButton buyItem = new JButton("구매");
         JButton resetItem = new JButton("초기화");
+		Font font=new Font("맑은 고딕",Font.BOLD,12);
+		buyItem.setFont(font);
+		resetItem.setFont(font);
 
         for (int i = 0; i < labels.length; i++) {
             labels[i] = new JLabel(resize(new ImageIcon(imagePaths[i]), WIDTH, HEIGHT));
