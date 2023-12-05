@@ -136,97 +136,119 @@ public class GUIMain {
         scrollPane = new JScrollPane(firstPane);
     }
 
-    private JPanel rorderPane;
-    TableSelectionDemo rorderTable = new TableSelectionDemo();
-    ItemTopPanel citemTop = new ItemTopPanel();
-    orderDetail od = new orderDetail(null, null, null);
-    showCost sc = new showCost(null);
-    public String[] imagePaths = {
-            "images/None.png",
-            "images/None.png",
-            "images/None.png",
-            "images/None.png",
-            "images/None.png",
-            "images/None.png",
-            "images/None.png",
-            "images/None.png",
-            "images/None.png",
-    };
-    showBuy sb = new showBuy(imagePaths);
+	private JPanel rorderPane;
+	TableSelectionDemo rorderTable = new TableSelectionDemo();
+	ItemTopPanel citemTop = new ItemTopPanel();
+	orderDetail od = new orderDetail(null, null, null);
+	showCost sc = new showCost(null);
 
-    public void setuprorderPane() {
-        rorderPane = new JPanel(new BorderLayout());
+	public String[] imagePaths = { "images/None.png", "images/None.png", "images/None.png", "images/None.png",
+			"images/None.png", "images/None.png", "images/None.png", "images/None.png", "images/None.png", };
+	showBuy sb = new showBuy(imagePaths);
 
-        // 지금까지의 꽃 구매 현황 확인
-        JPanel west = new JPanel();
-        sb = new showBuy(imagePaths);
-        west.add(sb, BorderLayout.CENTER);
+	public void setuprorderPane() {
+		rorderPane = new JPanel(new BorderLayout());
+		
+// 버튼을 통해 주문창에서 꽃을 검색할 수 있는 곳으로 가는 기능을 넣고 싶었음........
+//		
+//		JButton search = new JButton("원하는 꽃을 찾아보세요");
+//		Font font = new Font("맑은 고딕", Font.BOLD, 12);
+//		search.setFont(font);
+//		search.addActionListener(new ActionListener() {
+//        	public void actionPerformed(ActionEvent e) {
+//        		if (e.getActionCommand().equals("원하는 꽃을 찾아보세요")) {
+// 관리자.아이템 탭으로 가는 기능 구현 못함
+//            	}
+//           }
+//        });
 
-        // 주문할 상품의 상세정보가 표를 선택할때마다 바뀌어서 출력
-        JPanel east = new JPanel();
-        ImageIcon icon = null;
-        String imgName = "notChosen";
-        icon = new ImageIcon("images/" + imgName + ".png");
-        if (imgName.equals("notChosen")) {
-            icon = GUIMain.getInstance().od.resize(icon, 200, 300);
-        } else{
-            icon = GUIMain.getInstance().od.resize(icon, 300, 300);
-        }
-        od = new orderDetail("", "", icon);
-        od.setPreferredSize(new Dimension(500, 300));
-        east.add(od, BorderLayout.LINE_START);
+		// 지금까지의 꽃 구매 현황 확인
+		JPanel west = new JPanel();
+		sb = new showBuy(imagePaths);
+		west.add(sb, BorderLayout.CENTER);
 
-        // 주문할 상품을 검색하는 부분
-        JPanel bottom = new JPanel();
-        JPanel buyPane = new JPanel(new BorderLayout());
-        JPanel fourpanel = new JPanel(new GridBagLayout());
-        GridBagConstraints gbc = new GridBagConstraints();
-        JScrollPane scrollPane = new JScrollPane();
-        buyPane.setLayout(new GridLayout(14, 3));
-        List<?> itemlist = FlowerMgr.getInstance().search("");
-        for (Object o : itemlist) {
-            buyPane.add(new buyingImageCell((UIData) o));
-        }
-        scrollPane = new JScrollPane(buyPane);
-        scrollPane.setPreferredSize(new Dimension(450, 600));
-        bottom.add(sc,BorderLayout.WEST);
-        bottom.add(scrollPane, BorderLayout.EAST);
-        
+		// 주문할 상품의 상세정보가 표를 선택할때마다 바뀌어서 출력
+		JPanel east = new JPanel();
+		ImageIcon icon = null;
+		String imgName = "notChosen";
+		icon = new ImageIcon("images/" + imgName + ".png");
+		if (imgName.equals("notChosen")) {
+			icon = GUIMain.getInstance().od.resize(icon, 200, 300);
+		} else {
+			icon = GUIMain.getInstance().od.resize(icon, 300, 300);
+		}
+		od = new orderDetail("", "", icon);
+		od.setPreferredSize(new Dimension(500, 300));
+		east.add(od, BorderLayout.LINE_START);
 
-        rorderTable.tableTitle = "find";
-        rorderTable.addComponentsToPane(FlowerMgr.getInstance());
-        citemTop.setupTopPane(rorderTable);
-        // bottom.add(citemTop, BorderLayout.LINE_START);
-        // bottom.add(rorderTable, BorderLayout.LINE_END);
+		// 주문할 상품을 검색하는 부분
+		JPanel bottom = new JPanel(new GridBagLayout());
+		JPanel buyPane = new JPanel(new BorderLayout());
+		JPanel fourpanel = new JPanel(new GridBagLayout());
+		JPanel fourpanel2 = new JPanel(new GridBagLayout());
+		GridBagConstraints gbc = new GridBagConstraints();
+		JScrollPane scrollPane = new JScrollPane();
+		buyPane.setLayout(new GridLayout(14, 3));
+		List<?> itemlist = FlowerMgr.getInstance().search("");
+		for (Object o : itemlist) {
+			buyPane.add(new buyingImageCell((UIData) o));
+		}
+		scrollPane = new JScrollPane(buyPane);
+		scrollPane.setPreferredSize(new Dimension(500, 800));
 
-        gbc.gridx = 0;
-        gbc.gridy = 0;
-        gbc.weightx = 0.5;
-        gbc.weighty = 0.5;
-        gbc.fill = GridBagConstraints.BOTH;
-        fourpanel.add(west, gbc);
+		gbc.gridx = 0;
+		gbc.gridy = 0;
+		gbc.weightx = 0.7;
+		gbc.weighty = 0.15;
+		bottom.add(sc, gbc);
 
-        gbc.gridx = 1;
-        gbc.gridy = 0;
-        gbc.weightx = 0.7;
-        gbc.weighty = 0.01; 
-        fourpanel.add(bottom, gbc);
+//		gbc.gridx = 0;
+//		gbc.gridy = 1;
+//		gbc.weightx = 0.7;
+//		gbc.weighty = 0.15;
+//		gbc.anchor = GridBagConstraints.NORTH;
+//		bottom.add(search, gbc);
 
-        gbc.gridx = 0;
-        gbc.gridy = 1;
-        gbc.weightx = 0.3;
-        gbc.weighty = 0.99; 
-        gbc.anchor = GridBagConstraints.NORTH;
-        fourpanel.add(east, gbc);
-        west.setPreferredSize(new Dimension(300, 100));
-        
+		gbc.gridx = 0;
+		gbc.gridy = 2;
+		gbc.weightx = 0.7;
+		gbc.weighty = 0.7;
+		bottom.add(scrollPane, gbc);
 
+		rorderTable.tableTitle = "find";
+		rorderTable.addComponentsToPane(FlowerMgr.getInstance());
+		citemTop.setupTopPane(rorderTable);
+		// bottom.add(citemTop, BorderLayout.LINE_START);
+		// bottom.add(rorderTable, BorderLayout.LINE_END);
 
-        
+		gbc.gridx = 0;
+		gbc.gridy = 0;
+		gbc.weightx = 0.5;
+		gbc.weighty = 0.5;
+		gbc.fill = GridBagConstraints.BOTH;
+		fourpanel2.add(west, gbc);
 
-        rorderPane.add(fourpanel, BorderLayout.CENTER);
-        // rorderPane.add(west, BorderLayout.WEST);
-        // rorderPane.add(bottom, BorderLayout.EAST);
-        // rorderPane.add(east, BorderLayout.SOUTH);
-    }
+		gbc.gridx = 1;
+		gbc.gridy = 0;
+		gbc.weightx = 0.3;
+		gbc.weighty = 0.1;
+		fourpanel.add(bottom, gbc);
+
+		gbc.gridx = 0;
+		gbc.gridy = 1;
+		gbc.weightx = 0.3;
+		gbc.anchor = GridBagConstraints.NORTH;
+		fourpanel2.add(east, gbc);
+		west.setPreferredSize(new Dimension(300, 100));
+
+		gbc.gridx = 0;
+		gbc.gridy = 0;
+		gbc.weightx = 0.3;
+		fourpanel.add(fourpanel2, gbc);
+
+		rorderPane.add(fourpanel, BorderLayout.CENTER);
+		// rorderPane.add(west, BorderLayout.WEST);
+		// rorderPane.add(bottom, BorderLayout.EAST);
+		// rorderPane.add(east, BorderLayout.SOUTH);
+	}
 }
