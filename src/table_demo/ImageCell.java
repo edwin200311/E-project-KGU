@@ -30,16 +30,16 @@ public class ImageCell extends JPanel implements MouseListener {
 		setLayout(new BorderLayout());
 		userStrings = item.getUiTexts();
 		imgIcon = new ImageIcon("images/"+userStrings[0]+".png");
-		Image scaleImage = imgIcon.getImage().getScaledInstance(100, 70,Image.SCALE_DEFAULT);
+		Image scaleImage = imgIcon.getImage().getScaledInstance(220, 270,Image.SCALE_DEFAULT);
 		ImageIcon imgResized = new ImageIcon(scaleImage);
 		add(new JLabel(imgResized), BorderLayout.CENTER);
-		String itemLabelStr = String.format("<html><body><h2>%s <br/>가격: %s원", userStrings[0], userStrings[5]);
+		String itemLabelStr = String.format("<html><body><h3>%s", userStrings[0]);
 		JLabel itemLabel = new JLabel(itemLabelStr);
 		itemLabel.setPreferredSize(new Dimension(150, 80));
-		itemLabel.setFont(new Font("굴림", Font.PLAIN, 13));
+		itemLabel.setFont(new Font("맑은 고딕", Font.BOLD, 18));
 		itemLabel.setForeground(Color.black);
 		itemLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		add(itemLabel, BorderLayout.PAGE_END);
+		add(itemLabel, BorderLayout.SOUTH);
 		addMouseListener(this);
 	}
     void showDetail() {
