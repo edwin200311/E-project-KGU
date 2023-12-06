@@ -5,6 +5,11 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.awt.Image;
@@ -45,8 +50,8 @@ public class orderDetail extends JPanel {
 
     public orderDetail(String labelText, String defaultText, ImageIcon imageIcon) {
         this.setLayout(new BorderLayout());
-        
-		Font font=new Font("맑은 고딕",Font.BOLD,12);
+
+        Font font = new Font("맑은 고딕", Font.BOLD, 12);
         JLabel label = new JLabel(labelText);
         JButton addItem = new JButton("추가");
         addItem.setFont(font);
@@ -116,7 +121,7 @@ public class orderDetail extends JPanel {
                     }
                     index++;
                     imageCount++;
-                    
+
                 } else {
                     // 이미지 개수가 최대치에 도달한 경우 메시지 표시
                     JOptionPane.showMessageDialog(orderDetail.this, "꽃은 최대 9개까지 추가할 수 있습니다.",
@@ -157,12 +162,13 @@ public class orderDetail extends JPanel {
                 String flowerName = orderlist[i][0];
                 int count = Integer.parseInt(orderlist[i][1]);
                 result.append(flowerName).append(" ").append(count).append(" ");
-
+                reduceStock(flowerName, count);
             }
         }
         result.append("0");
         return result.toString().trim();
     }
+    
 
     public String extractValue(String text, String pattern) {
         Pattern regex = Pattern.compile(pattern);
@@ -184,5 +190,44 @@ public class orderDetail extends JPanel {
             }
         }
         return null;
+    }
+    public void reduceStock(String targetFlower,int reducedStock) {
+        try {
+            // 파일 경로 설정
+            String filePath = "flower.txt";
+
+            // 파일 읽기
+            BufferedReader reader = new BufferedReader(new FileReader(filePath));
+            StringBuilder fileContent = new StringBuilder();
+            String line;
+
+            while ((line = reader.readLine()) != null) {
+                // 라인에서 대상 꽃의 정보를 찾아서 재고를 줄임
+                if (line.contains(targetFlower)) {
+                    String[] flowerInfo = line.split(" "); // 공백을 기준으로 정보를 나눔
+                    int currentStock = Integer.parseInt(flowerInfo[6]); // 현재 재고
+                    int newStock = Math.max(currentStock - reducedStock, 0); // 줄일 재고
+
+                    // 줄어든 재고를 적용한 라인으로 수정
+                    line = line.replace(Integer.toString(currentStock), Integer.toString(newStock));
+                }
+
+                // 수정된 라인을 문자열에 추가
+                fileContent.append(line).append("\n");
+            }
+
+            // 파일 쓰기
+            BufferedWriter writer = new BufferedWriter(new FileWriter(filePath));
+            writer.write(fileContent.toString());
+
+            // 파일 닫기
+            reader.close();
+            writer.close();
+
+            System.out.println("재고가 줄어들었습니다.");
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
