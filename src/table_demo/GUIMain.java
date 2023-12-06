@@ -65,11 +65,11 @@ public class GUIMain {
         setupItemPane();
         setupOrderPane();
         // 아이템 리스트 탭과 주문 탭 두 개의 패널을 가지는 탭 패널
-        jtab.add("소비자.첫화면", mainPane);
-        jtab.add("소비자.꽃사전", scrollPane);
-        jtab.add("소비자.주문", rorderPane);
-        jtab.add("관리자.아이템", itemPane);
-        jtab.add("관리자.주문", orderPane);
+        jtab.add("store", mainPane);
+        jtab.add("꽃사전", scrollPane);
+        jtab.add("주문", rorderPane);
+        jtab.add("상세정보 검색", itemPane);
+        jtab.add("관리자.주문조회", orderPane);
         jtab.setTabPlacement(JTabbedPane.NORTH);
         mainFrame.getContentPane().add(jtab);
         // Display the window.
