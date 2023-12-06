@@ -29,6 +29,6 @@ public class BasketTableDemo extends TableSelectionDemo {
 			orderId = Integer.parseInt(kwd)+1;
 		}
 		basketMgr.setOrder(orderId);
-    	super.loadData("");
+    	super.loadData(""+orderId);
 	}
 }
